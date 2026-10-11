@@ -1,0 +1,16 @@
+*
+!go.mod
+!go.sum
+!cmd/
+!cmd/**
+!internal/
+!internal/**
+!web/
+!web/**
+web/node_modules/
+web/dist/
+web/playwright-report/
+web/test-results/
+web/*.tsbuildinfo
+web/.env*
+**/*_test.go
