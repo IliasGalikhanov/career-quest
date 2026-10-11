@@ -70,7 +70,11 @@ func getFiltered(ctx context.Context, q reader, id, filter string, args []any) (
 	if d.Bundle.Employees, err = readRows[domain.Employee](ctx, q, "SELECT payload FROM employees WHERE dataset_id=?"+filter+" ORDER BY ordinal", append([]any{id}, args...)...); err != nil {
 		return d, err
 	}
-	d.Bundle.History, err = readRows[domain.Activity](ctx, q, "SELECT payload FROM activity_history WHERE dataset_id=? AND employee_id IN (SELECT id FROM employees WHERE dataset_id=?"+filter+") ORDER BY ordinal", append([]any{id, id}, args...)...)
+	if filter == " AND id=?" {
+		d.Bundle.History, err = readRows[domain.Activity](ctx, q, "SELECT payload FROM activity_history WHERE dataset_id=? AND employee_id=? ORDER BY ordinal", id, args[0])
+	} else {
+		d.Bundle.History, err = readRows[domain.Activity](ctx, q, "SELECT payload FROM activity_history WHERE dataset_id=? AND employee_id IN (SELECT id FROM employees WHERE dataset_id=?"+filter+") ORDER BY ordinal", append([]any{id, id}, args...)...)
+	}
 	return d, err
 }
 func (s *Store) Get(ctx context.Context, id string) (Dataset, error) {
@@ -106,11 +110,7 @@ func rowsOf[T any](items []T, key func(T) string) (map[string]entity, error) {
 }
 
 // syncEntities writes only changed records. Table names are private constants.
-func syncEntities[T any](ctx context.Context, tx *sql.Tx, table, id string, before, after []T, key func(T) string) error {
-	old, err := rowsOf(before, key)
-	if err != nil {
-		return err
-	}
+func syncEntities[T any](ctx context.Context, tx *sql.Tx, table, id string, old map[string]entity, after []T, key func(T) string) error {
 	next, err := rowsOf(after, key)
 	if err != nil {
 		return err
@@ -133,25 +133,25 @@ func syncEntities[T any](ctx context.Context, tx *sql.Tx, table, id string, befo
 	}
 	return nil
 }
-func persist(ctx context.Context, tx *sql.Tx, id string, old, b domain.Bundle) error {
+func persist(ctx context.Context, tx *sql.Tx, id string, old map[string]map[string]entity, b domain.Bundle) error {
 	steps := []func() error{
 		func() error {
-			return syncEntities(ctx, tx, "skills", id, old.Skills, b.Skills, func(v domain.Skill) string { return v.ID })
+			return syncEntities(ctx, tx, "skills", id, old["skills"], b.Skills, func(v domain.Skill) string { return v.ID })
 		},
 		func() error {
-			return syncEntities(ctx, tx, "role_profiles", id, old.RoleProfiles, b.RoleProfiles, func(v domain.RoleProfile) string {
+			return syncEntities(ctx, tx, "role_profiles", id, old["role_profiles"], b.RoleProfiles, func(v domain.RoleProfile) string {
 				raw, _ := json.Marshal([]string{v.Role, v.Grade})
 				return string(raw)
 			})
 		},
 		func() error {
-			return syncEntities(ctx, tx, "events", id, old.Events, b.Events, func(v domain.Event) string { return v.ID })
+			return syncEntities(ctx, tx, "events", id, old["events"], b.Events, func(v domain.Event) string { return v.ID })
 		},
 		func() error {
-			return syncEntities(ctx, tx, "employees", id, old.Employees, b.Employees, func(v domain.Employee) string { return v.ID })
+			return syncEntities(ctx, tx, "employees", id, old["employees"], b.Employees, func(v domain.Employee) string { return v.ID })
 		},
 		func() error {
-			return syncEntities(ctx, tx, "activity_history", id, old.History, b.History, func(v domain.Activity) string { return v.ID })
+			return syncEntities(ctx, tx, "activity_history", id, old["activity_history"], b.History, func(v domain.Activity) string { return v.ID })
 		},
 	}
 	for _, step := range steps {
@@ -179,7 +179,7 @@ func (s *Store) Create(ctx context.Context, b domain.Bundle) (Dataset, error) {
 	if _, err = tx.ExecContext(ctx, "INSERT INTO datasets(id,name,meta,settings) VALUES(?,?,?,?)", d.ID, d.Name, string(meta), string(settings)); err != nil {
 		return d, err
 	}
-	if err = persist(ctx, tx, d.ID, domain.Bundle{}, b); err != nil {
+	if err = persist(ctx, tx, d.ID, nil, b); err != nil {
 		return d, err
 	}
 	return d, tx.Commit()
@@ -197,13 +197,8 @@ func (s *Store) Update(ctx context.Context, id string, revision int, change func
 	if d.Revision != revision {
 		return d, ErrConflict
 	}
-	// Keep a detached before-image because domain changes can mutate maps and slices.
-	raw, err := json.Marshal(d.Bundle)
+	before, err := snapshot(d.Bundle)
 	if err != nil {
-		return d, err
-	}
-	var before domain.Bundle
-	if err = json.Unmarshal(raw, &before); err != nil {
 		return d, err
 	}
 	if err = change(&d.Bundle); err != nil {
@@ -292,4 +287,29 @@ func (s *Store) Select(ctx context.Context, id, employee, department, role strin
 		return d, err
 	}
 	return d, tx.Commit()
+}
+
+// Capture immutable encoded rows before a domain function changes nested maps.
+func snapshot(b domain.Bundle) (map[string]map[string]entity, error) {
+	out := map[string]map[string]entity{}
+	var err error
+	if out["skills"], err = rowsOf(b.Skills, func(v domain.Skill) string { return v.ID }); err != nil {
+		return nil, err
+	}
+	if out["role_profiles"], err = rowsOf(b.RoleProfiles, func(v domain.RoleProfile) string {
+		raw, _ := json.Marshal([]string{v.Role, v.Grade})
+		return string(raw)
+	}); err != nil {
+		return nil, err
+	}
+	if out["events"], err = rowsOf(b.Events, func(v domain.Event) string { return v.ID }); err != nil {
+		return nil, err
+	}
+	if out["employees"], err = rowsOf(b.Employees, func(v domain.Employee) string { return v.ID }); err != nil {
+		return nil, err
+	}
+	if out["activity_history"], err = rowsOf(b.History, func(v domain.Activity) string { return v.ID }); err != nil {
+		return nil, err
+	}
+	return out, nil
 }

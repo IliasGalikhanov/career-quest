@@ -1,0 +1,85 @@
+{
+  "kind": "synthetic local technical load check",
+  "samples_per_endpoint": 40,
+  "concurrency": 4,
+  "sizes": [
+    {
+      "profiles": 12,
+      "history_rows": 36,
+      "input_bytes": 38694,
+      "import_ms": 41.5,
+      "endpoints": {
+        "recommendation": {
+          "median_ms": 27.24,
+          "p95_ms": 42.0,
+          "max_ms": 48.16,
+          "errors": 0
+        },
+        "hr": {
+          "median_ms": 10.15,
+          "p95_ms": 31.61,
+          "max_ms": 36.47,
+          "errors": 0
+        },
+        "dataset": {
+          "median_ms": 18.16,
+          "p95_ms": 33.64,
+          "max_ms": 35.86,
+          "errors": 0
+        }
+      }
+    },
+    {
+      "profiles": 500,
+      "history_rows": 1500,
+      "input_bytes": 546611,
+      "import_ms": 612.37,
+      "endpoints": {
+        "recommendation": {
+          "median_ms": 21.3,
+          "p95_ms": 33.85,
+          "max_ms": 44.89,
+          "errors": 0
+        },
+        "hr": {
+          "median_ms": 137.86,
+          "p95_ms": 264.52,
+          "max_ms": 341.73,
+          "errors": 0
+        },
+        "dataset": {
+          "median_ms": 128.36,
+          "p95_ms": 272.33,
+          "max_ms": 306.34,
+          "errors": 0
+        }
+      }
+    },
+    {
+      "profiles": 2000,
+      "history_rows": 6000,
+      "input_bytes": 2112612,
+      "import_ms": 3045.53,
+      "endpoints": {
+        "recommendation": {
+          "median_ms": 18.7,
+          "p95_ms": 38.07,
+          "max_ms": 41.95,
+          "errors": 0
+        },
+        "hr": {
+          "median_ms": 415.41,
+          "p95_ms": 1313.35,
+          "max_ms": 2172.61,
+          "errors": 0
+        },
+        "dataset": {
+          "median_ms": 505.76,
+          "p95_ms": 1099.34,
+          "max_ms": 1670.2,
+          "errors": 0
+        }
+      }
+    }
+  ]
+}

@@ -31,11 +31,36 @@ func BenchmarkDataset(b *testing.B) {
 					}
 				}
 			})
+			b.Run("recommendation_with_evidence", func(b *testing.B) {
+				b.ReportAllocs()
+				for b.Loop() {
+					var selected store.Dataset
+					if selective, ok := any(s).(interface {
+						Select(context.Context, string, string, string, string) (store.Dataset, error)
+					}); ok {
+						selected, err = selective.Select(ctx, d.ID, "load-00000", "", "")
+					} else {
+						selected, err = s.Get(ctx, d.ID)
+					}
+					if err != nil {
+						b.Fatal(err)
+					}
+					a, _ := domain.Analyze(selected.Bundle, "load-00000")
+					if err = s.SaveRun(ctx, selected, a); err != nil {
+						b.Fatal(err)
+					}
+				}
+			})
+
 			b.Run("goal_update", func(b *testing.B) {
 				b.ReportAllocs()
 				for b.Loop() {
 					d, err = s.Update(ctx, d.ID, d.Revision, func(bundle *domain.Bundle) error {
-						bundle.Employees[0].Goal = &domain.Goal{Role: "Platform Engineer", Grade: "Lead"}
+						grade := "Lead"
+						if d.Revision%2 == 0 {
+							grade = "Senior"
+						}
+						bundle.Employees[0].Goal = &domain.Goal{Role: "Platform Engineer", Grade: grade}
 						return nil
 					})
 					if err != nil {

@@ -1,0 +1,33 @@
+goos: windows
+goarch: amd64
+pkg: careerquest/internal/store
+cpu: AMD Ryzen 5 5600H with Radeon Graphics         
+BenchmarkDataset/12/read-12         	      10	   1900060 ns/op	  284958 B/op	    3049 allocs/op
+BenchmarkDataset/12/read-12         	      10	   1746680 ns/op	  284576 B/op	    3049 allocs/op
+BenchmarkDataset/12/read-12         	      10	   1857440 ns/op	  282931 B/op	    3041 allocs/op
+BenchmarkDataset/12/recommendation_with_evidence-12         	      10	   3320430 ns/op	  305348 B/op	    2596 allocs/op
+BenchmarkDataset/12/recommendation_with_evidence-12         	      10	   4433650 ns/op	  296303 B/op	    2562 allocs/op
+BenchmarkDataset/12/recommendation_with_evidence-12         	      10	   4441470 ns/op	  295807 B/op	    2560 allocs/op
+BenchmarkDataset/12/goal_update-12                          	      10	   6489610 ns/op	  546136 B/op	    5289 allocs/op
+BenchmarkDataset/12/goal_update-12                          	      10	   6542550 ns/op	  546806 B/op	    5292 allocs/op
+BenchmarkDataset/12/goal_update-12                          	      10	   5999450 ns/op	  546132 B/op	    5290 allocs/op
+BenchmarkDataset/500/read-12                                	      10	  24754590 ns/op	 4826688 B/op	   52183 allocs/op
+BenchmarkDataset/500/read-12                                	      10	  24777860 ns/op	 4828307 B/op	   52189 allocs/op
+BenchmarkDataset/500/read-12                                	      10	  24948800 ns/op	 4825969 B/op	   52180 allocs/op
+BenchmarkDataset/500/recommendation_with_evidence-12        	      10	   3304200 ns/op	  302404 B/op	    2559 allocs/op
+BenchmarkDataset/500/recommendation_with_evidence-12        	      10	   3249770 ns/op	  302598 B/op	    2561 allocs/op
+BenchmarkDataset/500/recommendation_with_evidence-12        	      10	   3176420 ns/op	  296475 B/op	    2559 allocs/op
+BenchmarkDataset/500/goal_update-12                         	      10	  37017070 ns/op	 9174360 B/op	   86671 allocs/op
+BenchmarkDataset/500/goal_update-12                         	      10	  38936580 ns/op	 9177331 B/op	   86673 allocs/op
+BenchmarkDataset/500/goal_update-12                         	      10	  36883910 ns/op	 9175045 B/op	   86668 allocs/op
+BenchmarkDataset/2000/read-12                               	      10	 131396330 ns/op	21165161 B/op	  204110 allocs/op
+BenchmarkDataset/2000/read-12                               	      10	 113754810 ns/op	21165465 B/op	  204110 allocs/op
+BenchmarkDataset/2000/read-12                               	      10	 108819190 ns/op	21165395 B/op	  204108 allocs/op
+BenchmarkDataset/2000/recommendation_with_evidence-12       	      10	   3209150 ns/op	  302697 B/op	    2560 allocs/op
+BenchmarkDataset/2000/recommendation_with_evidence-12       	      10	   3057360 ns/op	  302366 B/op	    2557 allocs/op
+BenchmarkDataset/2000/recommendation_with_evidence-12       	      10	   2983260 ns/op	  302704 B/op	    2559 allocs/op
+BenchmarkDataset/2000/goal_update-12                        	      10	 148490990 ns/op	38040122 B/op	  337642 allocs/op
+BenchmarkDataset/2000/goal_update-12                        	      10	 157844880 ns/op	38042464 B/op	  337652 allocs/op
+BenchmarkDataset/2000/goal_update-12                        	      10	 151985010 ns/op	38042739 B/op	  337649 allocs/op
+PASS
+ok  	careerquest/internal/store	15.182s
