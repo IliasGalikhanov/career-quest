@@ -23,7 +23,7 @@ type participation struct {
 }
 
 func (s *Server) hr(w http.ResponseWriter, r *http.Request) {
-	d, err := s.store.Get(r.Context(), r.PathValue("id"))
+	d, err := s.store.Select(r.Context(), r.PathValue("id"), "", r.URL.Query().Get("department"), r.URL.Query().Get("role"))
 	if handleError(w, err) {
 		return
 	}
@@ -31,6 +31,10 @@ func (s *Server) hr(w http.ResponseWriter, r *http.Request) {
 	people := map[string]bool{}
 	missing := []noStep{}
 	count := 0
+	historyByPerson := map[string][]domain.Activity{}
+	for _, h := range d.Bundle.History {
+		historyByPerson[h.EmployeeID] = append(historyByPerson[h.EmployeeID], h)
+	}
 	for _, e := range d.Bundle.Employees {
 		if department := r.URL.Query().Get("department"); department != "" && department != e.Department {
 			continue
@@ -40,7 +44,10 @@ func (s *Server) hr(w http.ResponseWriter, r *http.Request) {
 		}
 		people[e.ID] = true
 		count++
-		a, _ := domain.Analyze(d.Bundle, e.ID)
+		personal := d.Bundle
+		personal.Employees = []domain.Employee{e}
+		personal.History = historyByPerson[e.ID]
+		a, _ := domain.Analyze(personal, e.ID)
 		for _, gap := range a.Gaps {
 			if gap.Required == 0 {
 				continue

@@ -15,7 +15,10 @@ type reader interface {
 }
 
 func readEntities[T any](ctx context.Context, q reader, table, id string) ([]T, error) {
-	rows, err := q.QueryContext(ctx, "SELECT payload FROM "+table+" WHERE dataset_id=? ORDER BY ordinal", id)
+	return readRows[T](ctx, q, "SELECT payload FROM "+table+" WHERE dataset_id=? ORDER BY ordinal", id)
+}
+func readRows[T any](ctx context.Context, q reader, query string, args ...any) ([]T, error) {
+	rows, err := q.QueryContext(ctx, query, args...)
 	if err != nil {
 		return nil, err
 	}
@@ -37,6 +40,9 @@ func readEntities[T any](ctx context.Context, q reader, table, id string) ([]T, 
 
 // get uses one read transaction so metadata and entity rows share a snapshot.
 func get(ctx context.Context, q reader, id string) (Dataset, error) {
+	return getFiltered(ctx, q, id, "", nil)
+}
+func getFiltered(ctx context.Context, q reader, id, filter string, args []any) (Dataset, error) {
 	d := Dataset{ID: id}
 	var meta, settings []byte
 	err := q.QueryRowContext(ctx, "SELECT name,revision,meta,settings FROM datasets WHERE id=?", id).Scan(&d.Name, &d.Revision, &meta, &settings)
@@ -61,10 +67,10 @@ func get(ctx context.Context, q reader, id string) (Dataset, error) {
 	if d.Bundle.Events, err = readEntities[domain.Event](ctx, q, "events", id); err != nil {
 		return d, err
 	}
-	if d.Bundle.Employees, err = readEntities[domain.Employee](ctx, q, "employees", id); err != nil {
+	if d.Bundle.Employees, err = readRows[domain.Employee](ctx, q, "SELECT payload FROM employees WHERE dataset_id=?"+filter+" ORDER BY ordinal", append([]any{id}, args...)...); err != nil {
 		return d, err
 	}
-	d.Bundle.History, err = readEntities[domain.Activity](ctx, q, "activity_history", id)
+	d.Bundle.History, err = readRows[domain.Activity](ctx, q, "SELECT payload FROM activity_history WHERE dataset_id=? AND employee_id IN (SELECT id FROM employees WHERE dataset_id=?"+filter+") ORDER BY ordinal", append([]any{id, id}, args...)...)
 	return d, err
 }
 func (s *Store) Get(ctx context.Context, id string) (Dataset, error) {
@@ -264,4 +270,26 @@ func (s *Store) EmployeeIDs(ctx context.Context, id, department, role string) ([
 		ids = append(ids, value)
 	}
 	return ids, rows.Err()
+}
+
+// Select loads only matching profiles and history, within one SQLite snapshot.
+func (s *Store) Select(ctx context.Context, id, employee, department, role string) (Dataset, error) {
+	filter := ""
+	args := []any{}
+	for _, pair := range [][2]string{{"id", employee}, {"department", department}, {"role", role}} {
+		if pair[1] != "" {
+			filter += " AND " + pair[0] + "=?"
+			args = append(args, pair[1])
+		}
+	}
+	tx, err := s.db.BeginTx(ctx, &sql.TxOptions{ReadOnly: true})
+	if err != nil {
+		return Dataset{}, err
+	}
+	defer tx.Rollback()
+	d, err := getFiltered(ctx, tx, id, filter, args)
+	if err != nil {
+		return d, err
+	}
+	return d, tx.Commit()
 }

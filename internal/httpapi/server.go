@@ -169,7 +169,7 @@ func (s *Server) evidence(w http.ResponseWriter, r *http.Request) {
 	respond(w, 200, rows)
 }
 func (s *Server) analysis(w http.ResponseWriter, r *http.Request) {
-	d, err := s.store.Get(r.Context(), r.PathValue("id"))
+	d, err := s.store.Select(r.Context(), r.PathValue("id"), r.PathValue("employee"), "", "")
 	if handleError(w, err) {
 		return
 	}
