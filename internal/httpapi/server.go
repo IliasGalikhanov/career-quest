@@ -5,6 +5,7 @@ import (
 	"careerquest/internal/domain"
 	"careerquest/internal/importer"
 	"careerquest/internal/store"
+	_ "embed"
 	"encoding/json"
 	"errors"
 	"io"
@@ -21,6 +22,10 @@ type Server struct {
 	store  *store.Store
 	webDir string
 }
+
+//go:embed schema/openapi.json
+var openAPI []byte
+
 type apiError struct {
 	Code      string         `json:"code"`
 	RequestID string         `json:"request_id"`
@@ -31,6 +36,10 @@ func New(db *store.Store, webDir string) http.Handler {
 	s := &Server{db, webDir}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /api/health", s.health)
+	mux.HandleFunc("GET /api/openapi.json", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		w.Write(openAPI)
+	})
 	mux.HandleFunc("GET /api/datasets", s.list)
 	mux.HandleFunc("POST /api/demo", s.demo)
 	mux.HandleFunc("GET /api/example", func(w http.ResponseWriter, r *http.Request) {
@@ -232,7 +241,7 @@ func (s *Server) settings(w http.ResponseWriter, r *http.Request) {
 			return domain.ErrIneligible
 		}
 		for _, h := range b.History {
-			if h.CompletedAt > request.Settings.Date {
+			if h.Date > request.Settings.Date || h.CompletedAt > request.Settings.Date {
 				return domain.ErrFutureSession
 			}
 		}

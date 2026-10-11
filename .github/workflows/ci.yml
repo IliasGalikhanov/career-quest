@@ -32,6 +32,19 @@ jobs:
         run: |
           go run ./cmd/demo /tmp/demo.json
           cmp examples/demo.json /tmp/demo.json
+      - name: Reproduce evaluation and API contract
+        run: |
+          go run ./cmd/evaluate > /tmp/evaluation.json
+          cmp docs/evaluation.json /tmp/evaluation.json
+          go run ./cmd/openapi > /tmp/openapi.json
+          cmp internal/httpapi/schema/openapi.json /tmp/openapi.json
+          python3 -m venv /tmp/contract-env
+          /tmp/contract-env/bin/pip install -r scripts/requirements-contract.txt
+          /tmp/contract-env/bin/python scripts/check_contract.py
+      - name: Bounded fuzz checks
+        run: |
+          go test ./internal/domain -run '^$' -fuzz FuzzGainBounds -fuzztime=5s -parallel=2
+          go test ./internal/importer -run '^$' -fuzz FuzzBundle -fuzztime=5s -parallel=2
       - name: Install and check frontend
         working-directory: web
         run: |
@@ -50,6 +63,7 @@ jobs:
           docker compose up --build -d --wait
           curl --fail http://127.0.0.1:8080/api/health
           python3 scripts/check_persistence.py
+          /tmp/contract-env/bin/python scripts/check_contract.py --base-url http://127.0.0.1:8080
       - name: Stop containers
         if: always()
         run: docker compose down

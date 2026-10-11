@@ -1,0 +1,2208 @@
+{
+  "components": {
+    "schemas": {
+      "Activity": {
+        "properties": {
+          "applied_gains": {
+            "items": {
+              "$ref": "#/components/schemas/Gain"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "assigned_by": {
+            "type": "string"
+          },
+          "completed_at": {
+            "type": "string"
+          },
+          "completion_pct": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "feedback_rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "record_id": {
+            "type": "string"
+          },
+          "reflection": {
+            "type": "string"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "session_date": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "record_id",
+          "employee_id",
+          "event_id",
+          "date",
+          "due_date",
+          "status",
+          "completion_pct",
+          "score",
+          "feedback_rating",
+          "assigned_by"
+        ],
+        "type": "object"
+      },
+      "Analysis": {
+        "properties": {
+          "algorithm": {
+            "type": "string"
+          },
+          "assessed_coverage": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "catalog": {
+            "items": {
+              "$ref": "#/components/schemas/Candidate"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "coverage": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "employee": {
+            "$ref": "#/components/schemas/Employee"
+          },
+          "gaps": {
+            "items": {
+              "$ref": "#/components/schemas/Gap"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "goal": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Goal"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/Activity"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "levels": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "recommendations": {
+            "items": {
+              "$ref": "#/components/schemas/Candidate"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "suggested_goal": {
+            "type": "boolean"
+          },
+          "uncertain_completions": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "employee",
+          "goal",
+          "suggested_goal",
+          "levels",
+          "gaps",
+          "coverage",
+          "assessed_coverage",
+          "recommendations",
+          "catalog",
+          "history",
+          "uncertain_completions",
+          "algorithm"
+        ],
+        "type": "object"
+      },
+      "Bundle": {
+        "properties": {
+          "activity_history": {
+            "items": {
+              "$ref": "#/components/schemas/Activity"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "employees": {
+            "items": {
+              "$ref": "#/components/schemas/Employee"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "role_profiles": {
+            "items": {
+              "$ref": "#/components/schemas/RoleProfile"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "settings": {
+            "$ref": "#/components/schemas/Settings"
+          },
+          "skills": {
+            "items": {
+              "$ref": "#/components/schemas/Skill"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "meta",
+          "skills",
+          "role_profiles",
+          "employees",
+          "events",
+          "activity_history",
+          "settings"
+        ],
+        "type": "object"
+      },
+      "Candidate": {
+        "properties": {
+          "benefit": {
+            "type": "number"
+          },
+          "blocked": {
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "critical_gain": {
+            "type": "integer"
+          },
+          "event": {
+            "$ref": "#/components/schemas/Event"
+          },
+          "history_completed": {
+            "type": "integer"
+          },
+          "history_factor": {
+            "type": "number"
+          },
+          "history_unfinished": {
+            "type": "integer"
+          },
+          "improvements": {
+            "items": {
+              "$ref": "#/components/schemas/Improvement"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "score": {
+            "type": "number"
+          },
+          "session_date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "event",
+          "score",
+          "benefit",
+          "critical_gain",
+          "history_completed",
+          "history_unfinished",
+          "history_factor",
+          "improvements",
+          "blocked",
+          "session_date"
+        ],
+        "type": "object"
+      },
+      "Dataset": {
+        "properties": {
+          "bundle": {
+            "$ref": "#/components/schemas/Bundle"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "revision",
+          "bundle"
+        ],
+        "type": "object"
+      },
+      "Employee": {
+        "properties": {
+          "career_goal": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Goal"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "department": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "grade": {
+            "type": "string"
+          },
+          "hire_date": {
+            "type": "string"
+          },
+          "last_review_date": {
+            "type": "string"
+          },
+          "manager_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "preferred_language": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "skills": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "tenure_months": {
+            "type": "integer"
+          },
+          "work_format": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "employee_id",
+          "full_name",
+          "department",
+          "role",
+          "grade",
+          "manager_id",
+          "hire_date",
+          "tenure_months",
+          "work_format",
+          "preferred_language",
+          "career_goal",
+          "skills",
+          "last_review_date"
+        ],
+        "type": "object"
+      },
+      "Event": {
+        "properties": {
+          "criteria": {
+            "items": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "deliverable": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "descriptions": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "develops_skills": {
+            "items": {
+              "$ref": "#/components/schemas/Gain"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "duration_hours": {
+            "type": "number"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "mandatory": {
+            "type": "boolean"
+          },
+          "prerequisites": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "repeatable": {
+            "type": "boolean"
+          },
+          "target_grades": {
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "target_roles": {
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "titles": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "type": {
+            "type": "string"
+          },
+          "upcoming_sessions": {
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "event_id",
+          "title",
+          "description",
+          "type",
+          "format",
+          "duration_hours",
+          "mandatory",
+          "target_roles",
+          "target_grades",
+          "develops_skills",
+          "prerequisites",
+          "upcoming_sessions",
+          "repeatable"
+        ],
+        "type": "object"
+      },
+      "Gain": {
+        "properties": {
+          "gain": {
+            "type": "integer"
+          },
+          "max_level": {
+            "type": "integer"
+          },
+          "skill_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "skill_id",
+          "gain",
+          "max_level"
+        ],
+        "type": "object"
+      },
+      "Gap": {
+        "properties": {
+          "assessed": {
+            "type": "integer"
+          },
+          "critical": {
+            "type": "boolean"
+          },
+          "current": {
+            "type": "integer"
+          },
+          "missing_assessment": {
+            "type": "boolean"
+          },
+          "required": {
+            "type": "integer"
+          },
+          "skill_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "skill_id",
+          "assessed",
+          "current",
+          "required",
+          "critical",
+          "missing_assessment"
+        ],
+        "type": "object"
+      },
+      "Goal": {
+        "properties": {
+          "target_grade": {
+            "type": "string"
+          },
+          "target_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_role",
+          "target_grade"
+        ],
+        "type": "object"
+      },
+      "HR": {
+        "additionalProperties": false,
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "gaps": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "eligible": {
+                  "type": "integer"
+                },
+                "people": {
+                  "type": "integer"
+                },
+                "skill_id": {
+                  "type": "string"
+                },
+                "total_gap": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "skill_id",
+                "people",
+                "eligible",
+                "total_gap"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "participation": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "event_id": {
+                  "type": "string"
+                },
+                "statuses": {
+                  "additionalProperties": {
+                    "type": "integer"
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "event_id",
+                "statuses"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "people": {
+            "type": "integer"
+          },
+          "statuses": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object"
+          },
+          "without_step": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "employee_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "reasons": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "employee_id",
+                "name",
+                "reasons"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "people",
+          "date",
+          "statuses",
+          "gaps",
+          "without_step",
+          "participation"
+        ],
+        "type": "object"
+      },
+      "Improvement": {
+        "properties": {
+          "critical": {
+            "type": "boolean"
+          },
+          "from": {
+            "type": "integer"
+          },
+          "required": {
+            "type": "integer"
+          },
+          "skill_id": {
+            "type": "string"
+          },
+          "to": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "skill_id",
+          "from",
+          "to",
+          "required",
+          "critical"
+        ],
+        "type": "object"
+      },
+      "Issue": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "code",
+          "detail"
+        ],
+        "type": "object"
+      },
+      "Meta": {
+        "properties": {
+          "as_of_date": {
+            "type": "string"
+          },
+          "dataset": {
+            "type": "string"
+          },
+          "synthetic": {
+            "type": "boolean"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "version",
+          "as_of_date",
+          "synthetic"
+        ],
+        "type": "object"
+      },
+      "Preview": {
+        "additionalProperties": false,
+        "properties": {
+          "as_of_date": {
+            "type": "string"
+          },
+          "employees": {
+            "type": "integer"
+          },
+          "events": {
+            "type": "integer"
+          },
+          "history": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "skills": {
+            "type": "integer"
+          },
+          "uncertain_dates": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "employees",
+          "events",
+          "skills",
+          "history",
+          "as_of_date",
+          "uncertain_dates"
+        ],
+        "type": "object"
+      },
+      "Problem": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/Issue"
+            },
+            "type": "array"
+          },
+          "request_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "request_id"
+        ],
+        "type": "object"
+      },
+      "RoleProfile": {
+        "properties": {
+          "critical_skills": {
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "grade": {
+            "type": "string"
+          },
+          "required_skills": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "grade",
+          "required_skills",
+          "critical_skills"
+        ],
+        "type": "object"
+      },
+      "Settings": {
+        "properties": {
+          "assume_completion_date": {
+            "type": "boolean"
+          },
+          "date": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "horizon_days": {
+            "type": "integer"
+          },
+          "max_hours": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "date",
+          "max_hours",
+          "format",
+          "horizon_days",
+          "assume_completion_date"
+        ],
+        "type": "object"
+      },
+      "Skill": {
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "names": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "skill_id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "skill_id",
+          "name",
+          "type",
+          "category",
+          "description"
+        ],
+        "type": "object"
+      },
+      "Summary": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "revision"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Single-user loopback service for synthetic data. No authentication. Mutations require the latest revision. A checkbox declaration is not a personal-data detector.",
+    "title": "Career Quest local API",
+    "version": "0.2.0"
+  },
+  "openapi": "3.1.1",
+  "paths": {
+    "/datasets": {
+      "get": {
+        "operationId": "datasets",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Summary"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "List local datasets"
+      }
+    },
+    "/datasets/{id}": {
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "revision": {
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "revision"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "deleted"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Delete dataset and related records; requires current revision"
+      },
+      "get": {
+        "operationId": "dataset",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Read a complete workspace snapshot"
+      },
+      "patch": {
+        "operationId": "rename",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "maxLength": 120,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "revision": {
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "revision",
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Rename with optimistic concurrency"
+      }
+    },
+    "/datasets/{id}/employees/{employee}/analysis": {
+      "get": {
+        "operationId": "analysis",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "employee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Analysis"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Compute recommendations and append bounded diagnostic evidence"
+      }
+    },
+    "/datasets/{id}/employees/{employee}/goal": {
+      "put": {
+        "operationId": "goal",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "employee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "goal": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/Goal"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "revision": {
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "revision",
+                  "goal"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update or clear the career goal"
+      }
+    },
+    "/datasets/{id}/evidence": {
+      "get": {
+        "operationId": "evidence",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "algorithm": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "employee_id": {
+                        "type": "string"
+                      },
+                      "evidence": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "analysis": {
+                            "$ref": "#/components/schemas/Analysis"
+                          },
+                          "settings": {
+                            "$ref": "#/components/schemas/Settings"
+                          }
+                        },
+                        "required": [
+                          "settings",
+                          "analysis"
+                        ],
+                        "type": "object"
+                      },
+                      "revision": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "revision",
+                      "employee_id",
+                      "algorithm",
+                      "created_at",
+                      "evidence"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Export up to 500 recorded recommendation runs"
+      }
+    },
+    "/datasets/{id}/export": {
+      "get": {
+        "operationId": "export",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bundle"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Export domain state; recommendation evidence is separate"
+      }
+    },
+    "/datasets/{id}/hr": {
+      "get": {
+        "operationId": "hr",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "department",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "role",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HR"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Aggregate skill gaps and participation with SQL profile filters"
+      }
+    },
+    "/datasets/{id}/participation": {
+      "post": {
+        "operationId": "start",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "event_id": {
+                    "type": "string"
+                  },
+                  "revision": {
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "revision",
+                  "employee_id",
+                  "event_id"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Start one eligible activity"
+      }
+    },
+    "/datasets/{id}/participation/{record}": {
+      "put": {
+        "operationId": "finish",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "record",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "reflection": {
+                    "maxLength": 2000,
+                    "type": "string"
+                  },
+                  "revision": {
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "status": {
+                    "enum": [
+                      "completed",
+                      "dropped"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "revision",
+                  "status"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Complete or drop participation; frozen gains are applied only once"
+      }
+    },
+    "/datasets/{id}/settings": {
+      "put": {
+        "operationId": "settings",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "revision": {
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "settings": {
+                    "$ref": "#/components/schemas/Settings"
+                  }
+                },
+                "required": [
+                  "revision",
+                  "settings"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update explicit calculation settings"
+      }
+    },
+    "/demo": {
+      "post": {
+        "operationId": "demo",
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create an independent synthetic workspace"
+      }
+    },
+    "/example": {
+      "get": {
+        "operationId": "example",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bundle"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Download the independent synthetic input bundle"
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "algorithm": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "algorithm"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Check SQLite availability"
+      }
+    },
+    "/import/commit": {
+      "post": {
+        "operationId": "import",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "additionalProperties": false,
+                "description": "5 MiB total multipart limit. One bundle.json, or employees.json + skills.json + events.json + activity_history.csv. Append accepts employees.json and activity_history.csv only, with append_to and current revision.",
+                "properties": {
+                  "append_to": {
+                    "type": "string"
+                  },
+                  "files": {
+                    "items": {
+                      "format": "binary",
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "revision": {
+                    "type": "string"
+                  },
+                  "synthetic": {
+                    "enum": [
+                      "true"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "files",
+                  "synthetic"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dataset"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Revalidate and atomically create or append a dataset"
+      }
+    },
+    "/import/preview": {
+      "post": {
+        "operationId": "preview",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "additionalProperties": false,
+                "description": "5 MiB total multipart limit. One bundle.json, or employees.json + skills.json + events.json + activity_history.csv. Append accepts employees.json and activity_history.csv only, with append_to and current revision.",
+                "properties": {
+                  "append_to": {
+                    "type": "string"
+                  },
+                  "files": {
+                    "items": {
+                      "format": "binary",
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "revision": {
+                    "type": "string"
+                  },
+                  "synthetic": {
+                    "enum": [
+                      "true"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "files",
+                  "synthetic"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Preview"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Validate files without writing"
+      }
+    },
+    "/openapi.json": {
+      "get": {
+        "operationId": "contract",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Success",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            },
+            "description": "400 malformed request; 403 cross-origin write; 404 missing record; 409 stale revision; 422 validation or domain rule; 500 internal failure.",
+            "headers": {
+              "X-Request-ID": {
+                "description": "Server-generated correlation ID; also included in error bodies.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Download this OpenAPI contract"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8080/api"
+    }
+  ]
+}
