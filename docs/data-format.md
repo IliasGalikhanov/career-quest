@@ -78,3 +78,19 @@ CSV and bundle files are never written to an upload folder by the application. A
 commit stores the parsed state in SQLite. Raw request bodies are not logged. Database
 files, user imports, private notes, and secrets are excluded from Git and the Docker
 build context.
+
+## Exercise content and work notes
+
+Events may include `deliverable` (a localized string map) and `criteria` (a list of
+localized string maps). Imported events without these fields remain usable; the UI
+omits the exercise-details panel. The independent demo supplies both in EN/RU/KK.
+Existing datasets retain their original catalogs during migration; create a new demo
+to see the new exercises rather than silently rewriting an old catalog.
+
+Participation can include `reflection`, up to 2,000 Unicode characters. Completion
+accepts an optional note, stores plain text and displays it escaped. Export/import
+preserves it. It is self-reported evidence, not a verified proficiency assessment.
+Repeating an already-completed transition does not modify its note or award new gains.
+
+Dataset names support 1–120 Unicode characters. Rename changes both the displayed
+name and `meta.dataset`; it does not change IDs or reference relationships.

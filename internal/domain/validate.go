@@ -6,6 +6,7 @@ import (
 	"slices"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 func ValidDate(value string) bool {
@@ -41,7 +42,7 @@ func Validate(b Bundle) []Issue {
 	if !b.Meta.Synthetic {
 		add("meta.synthetic", "synthetic_required", "Only synthetic datasets are supported")
 	}
-	if strings.TrimSpace(b.Meta.Dataset) == "" || len(b.Meta.Dataset) > 120 {
+	if strings.TrimSpace(b.Meta.Dataset) == "" || utf8.RuneCountInString(b.Meta.Dataset) > 120 {
 		add("meta.dataset", "required", "Use a dataset name of 1–120 characters")
 	}
 	if !ValidDate(b.Meta.AsOfDate) {
@@ -188,6 +189,9 @@ func Validate(b Bundle) []Issue {
 	open := map[string]bool{}
 	sessions := map[string]bool{}
 	for i, h := range b.History {
+		if utf8.RuneCountInString(h.Reflection) > 2000 {
+			add(fmt.Sprintf("activity_history[%d].reflection", i), "size", "Maximum 2000 characters")
+		}
 		p := fmt.Sprintf("activity_history[%d]", i)
 		ids(h.ID, p+".record_id", historyIDs)
 		if !employees[h.EmployeeID] || !eventIDs[h.EventID] {

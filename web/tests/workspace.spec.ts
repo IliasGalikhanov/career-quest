@@ -312,3 +312,66 @@ test("rename and delete a dataset without affecting other workspaces", async ({
     page.getByRole("option", { name: unique, exact: true }),
   ).toHaveCount(0);
 });
+
+test("all sections pass automated accessibility checks in both themes", async ({
+  page,
+}) => {
+  await openDemo(page);
+  for (const dark of [false, true]) {
+    if (dark) await page.getByRole("button", { name: "Switch theme" }).click();
+    for (const section of [
+      "Activity library",
+      "People insights",
+      "Data & settings",
+    ]) {
+      await page.getByRole("button", { name: section, exact: true }).click();
+      await expect(page.locator("main h1")).toBeVisible();
+      const results = await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze();
+      expect(
+        results.violations.map((v) => ({
+          id: v.id,
+          nodes: v.nodes.map((n) => ({
+            target: n.target,
+            reason: n.failureSummary,
+          })),
+        })),
+        `${section}, dark=${dark}`,
+      ).toEqual([]);
+    }
+  }
+});
+
+test("mobile exercise completion preserves a literal text note", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await openDemo(page);
+  await page
+    .getByTestId("activity-architecture-lab")
+    .getByRole("button", { name: "Start activity" })
+    .click();
+  await page
+    .getByRole("textbox", { name: "Work note (optional)" })
+    .fill(
+      "Reviewed <script>alert('example')</script> as literal text, never executable markup.",
+    );
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+  await page.getByRole("button", { name: "Mark complete" }).click();
+  await expect(page.getByTestId("level-architecture")).toHaveText("3");
+  await page
+    .getByRole("cell")
+    .filter({ hasText: "Design a resilient service" })
+    .getByText("Work note (optional)", { exact: true })
+    .click();
+  await expect(page.locator(".work-note")).toContainText("<script>");
+  await page.screenshot({
+    path: "test-results/mobile-completion.png",
+    fullPage: true,
+  });
+});
