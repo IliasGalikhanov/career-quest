@@ -47,6 +47,9 @@ func Validate(b Bundle) []Issue {
 	if !ValidDate(b.Meta.AsOfDate) {
 		add("meta.as_of_date", "date", "Use YYYY-MM-DD")
 	}
+	if b.Settings.Date < b.Meta.AsOfDate {
+		add("settings.date", "date", "Calculation cannot precede the assessment snapshot")
+	}
 	for _, issue := range ValidateSettings(b.Settings) {
 		add(issue.Path, issue.Code, issue.Detail)
 	}
@@ -183,17 +186,21 @@ func Validate(b Bundle) []Issue {
 	historyIDs := map[string]bool{}
 	completed := map[string]bool{}
 	open := map[string]bool{}
+	sessions := map[string]bool{}
 	for i, h := range b.History {
 		p := fmt.Sprintf("activity_history[%d]", i)
 		ids(h.ID, p+".record_id", historyIDs)
 		if !employees[h.EmployeeID] || !eventIDs[h.EventID] {
 			add(p, "reference", "Unknown employee or event")
 		}
-		if !ValidDate(h.Date) {
-			add(p+".date", "date", "Use YYYY-MM-DD")
+		if !ValidDate(h.Date) || h.Date > b.Settings.Date {
+			add(p+".date", "date", "Expected YYYY-MM-DD no later than the calculation date")
 		}
-		if h.CompletedAt != "" && (!ValidDate(h.CompletedAt) || h.CompletedAt < h.Date) {
-			add(p+".completed_at", "date", "Completion cannot precede enrollment")
+		if h.CompletedAt != "" && (!ValidDate(h.CompletedAt) || h.CompletedAt < h.Date || h.CompletedAt > b.Settings.Date) {
+			add(p+".completed_at", "date", "Expected enrollment <= completion <= calculation date")
+		}
+		if h.SessionDate != "" && (!ValidDate(h.SessionDate) || (h.Status == "completed" && h.SessionDate > h.CompletedAt)) {
+			add(p+".session_date", "date", "Completed sessions require a valid session date no later than completed_at")
 		}
 		if h.DueDate != "" && !ValidDate(h.DueDate) {
 			add(p+".due_date", "date", "Use YYYY-MM-DD")
@@ -203,6 +210,15 @@ func Validate(b Bundle) []Issue {
 		}
 		if h.Completion < 0 || h.Completion > 100 || (h.Status == "completed" && h.Completion != 100) || (h.Status != "completed" && h.Completion == 100) || ((h.Status == "declined" || h.Status == "no_show") && h.Completion != 0) {
 			add(p+".completion_pct", "range", "Percentage does not match status")
+		}
+		if (h.Status == "dropped" && h.Completion < 5) || (h.Status != "completed" && h.Completion > 95) {
+			add(p+".completion_pct", "range", "Incomplete participation is at most 95%; dropped work is at least 5%")
+		}
+		if h.Status == "no_show" && events[h.EventID].Format == "self_paced" {
+			add(p+".status", "enum", "Self-paced activities do not have no-show outcomes")
+		}
+		if h.Status == "overdue" && (!events[h.EventID].Mandatory || h.DueDate == "" || h.DueDate >= b.Settings.Date) {
+			add(p+".due_date", "date", "Overdue requires a mandatory activity and a past due date")
 		}
 		if h.Score != nil && (*h.Score < 0 || *h.Score > 100) {
 			add(p+".score", "range", "Expected 0–100")
@@ -223,12 +239,29 @@ func Validate(b Bundle) []Issue {
 				add(p, "duplicate_completion", "Nonrepeatable event completed more than once")
 			}
 			completed[key] = true
+			date := h.SessionDate
+			if date == "" {
+				date = h.CompletedAt
+			}
+			if date == "" {
+				date = h.Date
+			}
+			sessionKey := key + "/" + date
+			if sessions[sessionKey] {
+				add(p, "duplicate_completion", "A session can be completed only once")
+			}
+			sessions[sessionKey] = true
 		}
 		if h.Status == "in_progress" {
 			if open[key] {
 				add(p, "duplicate", "Multiple open attempts")
 			}
 			open[key] = true
+		}
+	}
+	for _, h := range b.History {
+		if h.Status == "in_progress" && completed[h.EmployeeID+"/"+h.EventID] && !events[h.EventID].Repeatable {
+			add("activity_history", "duplicate_completion", "A completed nonrepeatable event cannot also be in progress")
 		}
 	}
 	return issues

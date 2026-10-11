@@ -42,6 +42,16 @@ func TestReplayUsesFrozenGainsAndReviewBoundary(t *testing.T) {
 	}
 }
 
+func TestSameDayReplayPreservesRecordedOrder(t *testing.T) {
+	b := demo.Dataset()
+	b.History = []domain.Activity{
+		{ID: "z-first", EmployeeID: "person-01", EventID: "architecture-lab", Date: "2026-01-20", CompletedAt: "2026-01-20", Status: "completed", Gains: []domain.Gain{{SkillID: "architecture", Gain: 1, MaxLevel: 3}}},
+		{ID: "a-second", EmployeeID: "person-01", EventID: "architecture-deep-dive", Date: "2026-01-20", CompletedAt: "2026-01-20", Status: "completed", Gains: []domain.Gain{{SkillID: "architecture", Gain: 1, MaxLevel: 5}}},
+	}
+	levels, _ := domain.EffectiveLevels(b, b.Employees[0])
+	if levels["architecture"] != 4 { t.Fatalf("ID order changed gain replay: %v", levels) }
+}
+
 func TestEligibilityAndMissingGoal(t *testing.T) {
 	for _, tc := range []struct {
 		name   string

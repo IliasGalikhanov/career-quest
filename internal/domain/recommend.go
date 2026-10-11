@@ -87,12 +87,9 @@ func EffectiveLevels(b Bundle, e Employee) (map[string]int, int) {
 			rows = append(rows, completion{date, h})
 		}
 	}
-	sort.Slice(rows, func(i, j int) bool {
-		if rows[i].date == rows[j].date {
-			return rows[i].row.ID < rows[j].row.ID
-		}
-		return rows[i].date < rows[j].date
-	})
+	// Date-only imports have no within-day timestamp. Preserve recorded order for
+	// ties; sorting random IDs could change the result of differently capped gains.
+	sort.SliceStable(rows, func(i, j int) bool { return rows[i].date < rows[j].date })
 	for _, r := range rows {
 		gains := r.row.Gains
 		if gains == nil {
