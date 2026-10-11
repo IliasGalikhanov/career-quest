@@ -175,3 +175,69 @@ func TestCrossOriginWriteRejected(t *testing.T) {
 		t.Fatal("cross-origin write allowed")
 	}
 }
+
+func TestManageDatasetsAndRequestDiagnostics(t *testing.T) {
+	db, err := store.Open(filepath.Join(t.TempDir(), "manage.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+	h := New(db, "")
+	d := decodeDataset(t, request(t, h, "POST", "/api/demo", nil))
+	prefix := "/api/datasets/" + d.ID
+	d = decodeDataset(t, request(t, h, "PATCH", prefix, map[string]any{"revision": d.Revision, "name": "Renamed workspace"}))
+	if d.Name != "Renamed workspace" || d.Bundle.Meta.Dataset != d.Name {
+		t.Fatal("name mismatch")
+	}
+	stale := request(t, h, "DELETE", prefix, map[string]any{"revision": 1})
+	if stale.Code != 409 {
+		t.Fatal(stale.Code)
+	}
+	var problem apiError
+	if err = json.Unmarshal(stale.Body.Bytes(), &problem); err != nil {
+		t.Fatal(err)
+	}
+	if problem.RequestID == "" || problem.RequestID != stale.Header().Get("X-Request-ID") {
+		t.Fatal("missing correlated request ID")
+	}
+	if w := request(t, h, "DELETE", prefix, map[string]any{"revision": d.Revision}); w.Code != 200 {
+		t.Fatal(w.Body.String())
+	}
+	if w := request(t, h, "GET", prefix, nil); w.Code != 404 {
+		t.Fatal("deleted dataset remains")
+	}
+}
+
+func TestReflectionSurvivesExportImport(t *testing.T) {
+	db, err := store.Open(filepath.Join(t.TempDir(), "reflection.db"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+	h := New(db, "")
+	d := decodeDataset(t, request(t, h, "POST", "/api/demo", nil))
+	prefix := "/api/datasets/" + d.ID
+	d = decodeDataset(t, request(t, h, "POST", prefix+"/participation", map[string]any{"revision": d.Revision, "employee_id": "person-01", "event_id": "architecture-lab"}))
+	record := d.Bundle.History[len(d.Bundle.History)-1].ID
+	d = decodeDataset(t, request(t, h, "PUT", prefix+"/participation/"+record, map[string]any{"revision": d.Revision, "status": "completed", "reflection": "Compared retries and idempotency in a component diagram."}))
+	exported := request(t, h, "GET", prefix+"/export", nil)
+	var body bytes.Buffer
+	writer := multipart.NewWriter(&body)
+	file, _ := writer.CreateFormFile("files", "backup.json")
+	file.Write(exported.Body.Bytes())
+	writer.WriteField("synthetic", "true")
+	writer.Close()
+	req := httptest.NewRequest("POST", "/api/import/commit", &body)
+	req.Header.Set("Content-Type", writer.FormDataContentType())
+	out := httptest.NewRecorder()
+	h.ServeHTTP(out, req)
+	restored := decodeDataset(t, out)
+	if restored.Bundle.History[len(restored.Bundle.History)-1].Reflection != d.Bundle.History[len(d.Bundle.History)-1].Reflection {
+		t.Fatal("reflection lost")
+	}
+	actual, _ := json.Marshal(restored.Bundle)
+	expected, _ := json.Marshal(d.Bundle)
+	if !bytes.Equal(actual, expected) {
+		t.Fatal("backup round trip changed domain state")
+	}
+}

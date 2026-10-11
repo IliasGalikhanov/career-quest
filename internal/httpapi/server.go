@@ -22,8 +22,9 @@ type Server struct {
 	webDir string
 }
 type apiError struct {
-	Code   string         `json:"code"`
-	Issues []domain.Issue `json:"issues,omitempty"`
+	Code      string         `json:"code"`
+	RequestID string         `json:"request_id"`
+	Issues    []domain.Issue `json:"issues,omitempty"`
 }
 
 func New(db *store.Store, webDir string) http.Handler {
@@ -39,6 +40,8 @@ func New(db *store.Store, webDir string) http.Handler {
 	mux.HandleFunc("POST /api/import/preview", s.importData)
 	mux.HandleFunc("POST /api/import/commit", s.importData)
 	mux.HandleFunc("GET /api/datasets/{id}", s.dataset)
+	mux.HandleFunc("PATCH /api/datasets/{id}", s.rename)
+	mux.HandleFunc("DELETE /api/datasets/{id}", s.delete)
 	mux.HandleFunc("GET /api/datasets/{id}/export", s.export)
 	mux.HandleFunc("GET /api/datasets/{id}/evidence", s.evidence)
 	mux.HandleFunc("GET /api/datasets/{id}/employees/{employee}/analysis", s.analysis)
@@ -49,7 +52,7 @@ func New(db *store.Store, webDir string) http.Handler {
 	mux.HandleFunc("GET /api/datasets/{id}/hr", s.hr)
 	mux.HandleFunc("/api/", func(w http.ResponseWriter, r *http.Request) { fail(w, 404, "not_found", nil) })
 	mux.HandleFunc("/", s.static)
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return diagnostics(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("X-Content-Type-Options", "nosniff")
 		w.Header().Set("Referrer-Policy", "no-referrer")
 		w.Header().Set("X-Frame-Options", "DENY")
@@ -78,7 +81,7 @@ func New(db *store.Store, webDir string) http.Handler {
 			}
 		}()
 		mux.ServeHTTP(w, r)
-	})
+	}))
 }
 func respond(w http.ResponseWriter, status int, value any) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
@@ -88,7 +91,7 @@ func respond(w http.ResponseWriter, status int, value any) {
 	}
 }
 func fail(w http.ResponseWriter, status int, code string, issues []domain.Issue) {
-	respond(w, status, apiError{code, issues})
+	respond(w, status, apiError{Code: code, Issues: issues, RequestID: w.Header().Get("X-Request-ID")})
 }
 func readJSON(w http.ResponseWriter, r *http.Request, out any) bool {
 	r.Body = http.MaxBytesReader(w, r.Body, 64<<10)

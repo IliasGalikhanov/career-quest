@@ -138,6 +138,7 @@ export interface Preview {
   uncertain_dates: number;
 }
 export interface Problem {
+  request_id?: string;
   code: string;
   issues?: { path: string; code: string; detail: string }[];
 }
