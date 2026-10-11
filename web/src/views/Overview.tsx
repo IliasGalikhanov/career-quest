@@ -335,7 +335,7 @@ export default function Overview({
                 <thead>
                   <tr>
                     <th>{t("event")}</th>
-                    <th>{t("date")}</th>
+                    <th>{t("historyDate")}</th>
                     <th>{t("status")}</th>
                   </tr>
                 </thead>

@@ -65,6 +65,7 @@ const en = {
   drop: "Stop activity",
   inProgress: "Continue your work",
   date: "Calculation date",
+  historyDate: "Participation / completion date",
   session: "Session",
   noRecommendations: "No suitable next step yet",
   noRecommendationsBody:
@@ -253,6 +254,7 @@ const ru: Dictionary = {
   drop: "Прекратить участие",
   inProgress: "Продолжите начатое",
   date: "Дата расчёта",
+  historyDate: "Дата участия / завершения",
   session: "Сессия",
   noRecommendations: "Подходящего шага пока нет",
   noRecommendationsBody:
@@ -440,6 +442,7 @@ const kk: Dictionary = {
   drop: "Қатысуды тоқтату",
   inProgress: "Бастаған істі жалғастырыңыз",
   date: "Есептеу күні",
+  historyDate: "Қатысу / аяқталу күні",
   session: "Сессия",
   noRecommendations: "Әзірге сәйкес қадам жоқ",
   noRecommendationsBody:

@@ -93,6 +93,10 @@ An explicit setting can treat its enrollment date as completion; the UI warns th
 this may overestimate progress. Review-day completions are treated as already included
 in the assessment because no within-day ordering is available.
 
+For multiple completions on the same day, replay preserves their recorded order.
+Imported dates cannot be later than the calculation date, and duplicate completions
+of the same session are rejected. A calculation date before the snapshot is invalid.
+
 Coverage is `Σ min(level, requirement) / Σ requirement` over the target profile.
 Zero total requirements produce no percentage. Critical gaps are shown separately.
 Neither coverage nor course completion changes the employee's grade or confirmed

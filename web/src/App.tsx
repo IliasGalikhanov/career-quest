@@ -109,7 +109,9 @@ export default function App() {
     api<Dataset>(`/datasets/${datasetId}`)
       .then((d) => {
         if (active) {
-          setDataset(d);
+          setDataset((current) =>
+            current?.id === d.id && current.revision > d.revision ? current : d,
+          );
           save("cq-dataset", d.id);
         }
       })
@@ -274,6 +276,7 @@ export default function App() {
               {t("dataset")}
               <select
                 value={datasetId}
+                disabled={busy}
                 onChange={(e) => {
                   setDataset(null);
                   setAnalysis(null);
@@ -291,6 +294,7 @@ export default function App() {
               {t("profile")}
               <select
                 value={selectedEmployee}
+                disabled={busy}
                 onChange={(e) => {
                   setAnalysis(null);
                   setEmployeeId(e.target.value);
