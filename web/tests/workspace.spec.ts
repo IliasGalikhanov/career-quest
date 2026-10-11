@@ -223,8 +223,12 @@ test("keyboard entry and automated accessibility checks in both themes", async (
     expect(
       results.violations.map((violation) => ({
         id: violation.id,
-        targets: violation.nodes.map((node) => node.target),
+        nodes: violation.nodes.map((node) => ({
+          target: node.target,
+          reason: node.failureSummary,
+        })),
       })),
+      `Accessibility violations in ${theme} theme`,
     ).toEqual([]);
   }
 });
