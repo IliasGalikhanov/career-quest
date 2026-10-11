@@ -1,0 +1,106 @@
+[
+  {
+    "name": "critical_gap",
+    "rationale": "Prefer the critical architecture gap over a shorter communication activity.",
+    "expected_top": "architecture-lab",
+    "actual_top": "architecture-lab",
+    "passed": true,
+    "shortest_feasible_baseline": "story-circle",
+    "critical_weight_sensitivity": {
+      "1": "story-circle",
+      "2": "architecture-lab",
+      "3": "architecture-lab"
+    }
+  },
+  {
+    "name": "time_budget",
+    "rationale": "Do not propose work that exceeds the available effort.",
+    "expected_top": "",
+    "actual_top": "",
+    "passed": true,
+    "shortest_feasible_baseline": "",
+    "critical_weight_sensitivity": {
+      "1": "",
+      "2": "",
+      "3": ""
+    }
+  },
+  {
+    "name": "missing_prerequisite",
+    "rationale": "Do not offer advanced architecture before the prerequisite level.",
+    "expected_top": "",
+    "actual_top": "",
+    "passed": true,
+    "shortest_feasible_baseline": "",
+    "critical_weight_sensitivity": {
+      "1": "",
+      "2": "",
+      "3": ""
+    }
+  },
+  {
+    "name": "role_change_admission",
+    "rationale": "A new goal does not grant admission reserved for the target role.",
+    "expected_top": "",
+    "actual_top": "",
+    "passed": true,
+    "shortest_feasible_baseline": "",
+    "critical_weight_sensitivity": {
+      "1": "",
+      "2": "",
+      "3": ""
+    }
+  },
+  {
+    "name": "no_goal_at_lead",
+    "rationale": "Do not invent a promotion after Lead.",
+    "expected_top": "",
+    "actual_top": "",
+    "passed": true,
+    "shortest_feasible_baseline": "",
+    "critical_weight_sensitivity": {
+      "1": "",
+      "2": "",
+      "3": ""
+    }
+  },
+  {
+    "name": "requirements_met",
+    "rationale": "Do not recommend courses when all target requirements are met.",
+    "expected_top": "",
+    "actual_top": "",
+    "passed": true,
+    "shortest_feasible_baseline": "",
+    "critical_weight_sensitivity": {
+      "1": "",
+      "2": "",
+      "3": ""
+    }
+  },
+  {
+    "name": "no_history",
+    "rationale": "Sparse history must not prevent a useful first recommendation.",
+    "expected_top": "architecture-lab",
+    "actual_top": "architecture-lab",
+    "passed": true,
+    "shortest_feasible_baseline": "story-circle",
+    "critical_weight_sensitivity": {
+      "1": "story-circle",
+      "2": "architecture-lab",
+      "3": "architecture-lab"
+    }
+  },
+  {
+    "name": "catalog_gap",
+    "rationale": "Return no step when the catalog cannot improve the target skills.",
+    "expected_top": "",
+    "actual_top": "",
+    "passed": true,
+    "shortest_feasible_baseline": "",
+    "critical_weight_sensitivity": {
+      "1": "",
+      "2": "",
+      "3": ""
+    }
+  }
+]
