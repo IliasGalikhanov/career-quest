@@ -115,68 +115,6 @@ func (s *Store) List(ctx context.Context) ([]Summary, error) {
 	}
 	return out, rows.Err()
 }
-func (s *Store) Create(ctx context.Context, b domain.Bundle) (Dataset, error) {
-	d := Dataset{ID: NewID(), Name: b.Meta.Dataset, Revision: 1, Bundle: b}
-	data, err := json.Marshal(b)
-	if err != nil {
-		return d, err
-	}
-	_, err = s.db.ExecContext(ctx, "INSERT INTO datasets(id,name,payload) VALUES(?,?,?)", d.ID, d.Name, string(data))
-	return d, err
-}
-func (s *Store) Get(ctx context.Context, id string) (Dataset, error) {
-	d := Dataset{ID: id}
-	var data string
-	err := s.db.QueryRowContext(ctx, "SELECT name,revision,payload FROM datasets WHERE id=?", id).Scan(&d.Name, &d.Revision, &data)
-	if errors.Is(err, sql.ErrNoRows) {
-		return d, ErrNotFound
-	}
-	if err != nil {
-		return d, err
-	}
-	err = json.Unmarshal([]byte(data), &d.Bundle)
-	return d, err
-}
-
-// Update serializes the read-modify-write and rejects stale browser state.
-func (s *Store) Update(ctx context.Context, id string, revision int, change func(*domain.Bundle) error) (Dataset, error) {
-	tx, err := s.db.BeginTx(ctx, nil)
-	if err != nil {
-		return Dataset{}, err
-	}
-	defer tx.Rollback()
-	d := Dataset{ID: id}
-	var raw string
-	err = tx.QueryRowContext(ctx, "SELECT name,revision,payload FROM datasets WHERE id=?", id).Scan(&d.Name, &d.Revision, &raw)
-	if errors.Is(err, sql.ErrNoRows) {
-		return d, ErrNotFound
-	}
-	if err != nil {
-		return d, err
-	}
-	if d.Revision != revision {
-		return d, ErrConflict
-	}
-	if err = json.Unmarshal([]byte(raw), &d.Bundle); err != nil {
-		return d, err
-	}
-	if err = change(&d.Bundle); err != nil {
-		return d, err
-	}
-	data, err := json.Marshal(d.Bundle)
-	if err != nil {
-		return d, err
-	}
-	d.Revision++
-	d.Name = d.Bundle.Meta.Dataset
-	_, err = tx.ExecContext(ctx, "UPDATE datasets SET payload=?,revision=?,name=? WHERE id=?", string(data), d.Revision, d.Name, id)
-	if err != nil {
-		return d, err
-	}
-	err = tx.Commit()
-	return d, err
-}
-
 func (s *Store) SaveRun(ctx context.Context, d Dataset, a domain.Analysis) error {
 	data, err := json.Marshal(struct {
 		Settings domain.Settings `json:"settings"`
