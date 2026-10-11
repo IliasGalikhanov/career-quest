@@ -28,7 +28,7 @@ test('complete a recommendation and keep progress after reload', async ({ page }
 test('update goal and explain unavailable activities', async ({ page }) => {
   await openDemo(page)
   await page.getByRole('button', { name: 'Update goal' }).click()
-  await page.getByLabel('Target grade', { exact: true }).selectOption('Lead')
+  await page.getByRole('combobox', { name: 'Target grade', exact: true }).selectOption('Lead')
   await page.getByRole('button', { name: 'Save changes' }).click()
   await expect(page.locator('.career-route')).toContainText('Lead')
   await page.getByRole('button', { name: 'Activity library', exact: true }).click()
@@ -68,7 +68,7 @@ test('invalid import has a readable error and preserves the current dataset', as
 test('filter HR insights by department', async ({ page }) => {
   await openDemo(page)
   await page.getByRole('button', { name: 'People insights', exact: true }).click()
-  await page.getByLabel('Department', { exact: true }).selectOption('Platform')
+  await page.getByRole('combobox', { name: 'Department', exact: true }).selectOption('Platform')
   await expect(page.locator('.stat-strip').first()).toContainText('4')
   await expect(page.getByRole('heading', { name: 'People below requirement' })).toBeVisible()
 })
