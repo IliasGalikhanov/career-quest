@@ -1,3 +1,4 @@
+import ExerciseDetails from "./ExerciseDetails";
 import {
   ArrowUpRight,
   Clock3,
@@ -51,6 +52,7 @@ export default function ActivityCard({
       <p className="muted">
         {localize(c.event.descriptions, c.event.description, language)}
       </p>
+      <ExerciseDetails event={c.event} language={language} t={t} />
       <div className="activity-meta">
         <span>
           <Clock3 size={15} />

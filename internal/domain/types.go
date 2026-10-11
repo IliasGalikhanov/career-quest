@@ -54,6 +54,8 @@ type Gain struct {
 }
 
 type Event struct {
+	Deliverable   Localized      `json:"deliverable,omitempty"`
+	Criteria      []Localized    `json:"criteria,omitempty"`
 	ID            string         `json:"event_id"`
 	Title         string         `json:"title"`
 	Description   string         `json:"description"`
@@ -72,6 +74,7 @@ type Event struct {
 }
 
 type Activity struct {
+	Reflection  string `json:"reflection,omitempty"`
 	ID          string `json:"record_id"`
 	EmployeeID  string `json:"employee_id"`
 	EventID     string `json:"event_id"`

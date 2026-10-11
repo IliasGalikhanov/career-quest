@@ -258,13 +258,16 @@ func (s *Server) start(w http.ResponseWriter, r *http.Request) {
 }
 func (s *Server) finish(w http.ResponseWriter, r *http.Request) {
 	var request struct {
-		Revision int    `json:"revision"`
-		Status   string `json:"status"`
+		Revision   int    `json:"revision"`
+		Status     string `json:"status"`
+		Reflection string `json:"reflection"`
 	}
 	if !readJSON(w, r, &request) {
 		return
 	}
-	d, err := s.store.Update(r.Context(), r.PathValue("id"), request.Revision, func(b *domain.Bundle) error { return domain.Finish(b, r.PathValue("record"), request.Status) })
+	d, err := s.store.Update(r.Context(), r.PathValue("id"), request.Revision, func(b *domain.Bundle) error {
+		return domain.FinishWithReflection(b, r.PathValue("record"), request.Status, request.Reflection)
+	})
 	if !handleError(w, err) {
 		respond(w, 200, d)
 	}

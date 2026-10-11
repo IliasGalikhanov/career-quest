@@ -1,11 +1,38 @@
 package domain
 
-import "errors"
+import (
+	"errors"
+	"strings"
+	"unicode/utf8"
+)
 
 var ErrIneligible = errors.New("ineligible")
 var ErrActivityNotFound = errors.New("activity_not_found")
 var ErrFutureSession = errors.New("future_session")
 var ErrInvalidTransition = errors.New("invalid_transition")
+
+// Reflection is self-reported evidence, not a verified assessment or external URL.
+func FinishWithReflection(b *Bundle, recordID, status, reflection string) error {
+	reflection = strings.TrimSpace(reflection)
+	if utf8.RuneCountInString(reflection) > 2000 {
+		return ErrInvalidTransition
+	}
+	for _, h := range b.History {
+		if h.ID == recordID && h.Status == status {
+			return nil
+		}
+	}
+	if err := Finish(b, recordID, status); err != nil {
+		return err
+	}
+	for i := range b.History {
+		if b.History[i].ID == recordID {
+			b.History[i].Reflection = reflection
+			break
+		}
+	}
+	return nil
+}
 
 func Start(b *Bundle, employeeID, eventID, recordID string) error {
 	a, ok := Analyze(*b, employeeID)

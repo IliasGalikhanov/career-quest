@@ -92,5 +92,6 @@ func Dataset() domain.Bundle {
 	}
 	b.History = append(b.History, domain.Activity{ID: "past-4", EmployeeID: b.Employees[1].ID, EventID: "research-sprint", Date: "2026-01-12", CompletedAt: "2026-01-14", Status: "completed", Completion: 100, AssignedBy: "self"})
 	b.History = append(b.History, domain.Activity{ID: "past-5", EmployeeID: b.Employees[2].ID, EventID: "analysis-lab", Date: "2026-01-13", Status: "completed", Completion: 100, AssignedBy: "self"})
+	enrich(b.Events)
 	return b
 }

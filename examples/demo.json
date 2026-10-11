@@ -632,18 +632,30 @@
   ],
   "events": [
     {
+      "deliverable": {
+        "en": "A component diagram and a one-page decision record.",
+        "kk": "Компоненттер сызбасы және бір беттік архитектуралық шешім.",
+        "ru": "Схема компонентов и запись архитектурного решения на одну страницу."
+      },
+      "criteria": [
+        {
+          "en": "Describe retries, duplicate requests, and recovery after an outage; compare two alternatives.",
+          "kk": "Қайта сұрауларды, қайталанған тапсырыстарды және қалпына келуді сипаттап, екі шешімді салыстырыңыз.",
+          "ru": "Опишите повторы запросов, дубликаты и восстановление; сравните два варианта решения."
+        }
+      ],
       "event_id": "architecture-lab",
       "title": "Design a resilient service",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Design an order service that remains usable when payment processing is unavailable.",
       "titles": {
         "en": "Design a resilient service",
         "kk": "Тұрақты сервисті жобалау",
         "ru": "Спроектировать устойчивый сервис"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Design an order service that remains usable when payment processing is unavailable.",
+        "kk": "Төлем жүйесі істен шыққанда да жұмыс істейтін тапсырыс сервисін жобалаңыз.",
+        "ru": "Спроектируйте сервис заказов, который продолжает работать при сбое платёжной системы."
       },
       "type": "workshop",
       "format": "self_paced",
@@ -670,18 +682,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "Three request/response examples and an error table.",
+        "kk": "Сұрау мен жауаптың үш мысалы және қателер кестесі.",
+        "ru": "Три примера запросов и ответов, таблица ошибок."
+      },
+      "criteria": [
+        {
+          "en": "Cover validation, concurrent requests, and safe retries.",
+          "kk": "Валидацияны, қатар келген сұрауларды және қауіпсіз қайталауды қарастырыңыз.",
+          "ru": "Разберите валидацию, одновременные запросы и безопасный повтор."
+        }
+      ],
       "event_id": "api-clinic",
       "title": "Review an API contract",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Design an API to reserve a meeting room without double booking.",
       "titles": {
         "en": "Review an API contract",
         "kk": "API келісімшартын тексеру",
         "ru": "Ревью контракта API"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Design an API to reserve a meeting room without double booking.",
+        "kk": "Бөлмені екі рет брондауға жол бермейтін API жобалаңыз.",
+        "ru": "Спроектируйте API бронирования переговорной без двойных бронирований."
       },
       "type": "workshop",
       "format": "self_paced",
@@ -708,18 +732,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "A risk-based test matrix with five executable cases.",
+        "kk": "Тәуекелдер матрицасы және орындалатын бес тест сценарийі.",
+        "ru": "Матрица рисков и пять исполняемых тестовых сценариев."
+      },
+      "criteria": [
+        {
+          "en": "Include invalid references, duplicate IDs, rollback, and a successful round trip.",
+          "kk": "Қате сілтемелерді, қайталанған ID-лерді, кері қайтаруды және экспорт-импорт циклін тексеріңіз.",
+          "ru": "Проверьте неверные ссылки, повторяющиеся ID, откат и экспорт с повторным импортом."
+        }
+      ],
       "event_id": "test-workbench",
       "title": "Build a testing strategy",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Plan tests for an import that must either save all records or save nothing.",
       "titles": {
         "en": "Build a testing strategy",
         "kk": "Тестілеу стратегиясын құру",
         "ru": "Разработать стратегию тестирования"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Plan tests for an import that must either save all records or save nothing.",
+        "kk": "Барлық жазбаны бірге сақтайтын немесе ештеңе сақтамайтын импортты тестілеуді жоспарлаңыз.",
+        "ru": "Подготовьте тесты импорта, который сохраняет все записи либо не сохраняет ничего."
       },
       "type": "workshop",
       "format": "self_paced",
@@ -746,18 +782,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "A six-question guide and a fictional pilot transcript.",
+        "kk": "Алты сұрақтан тұратын нұсқаулық және ойдан шығарылған сынақ сұхбаты.",
+        "ru": "Гайд из шести вопросов и вымышленный пробный диалог."
+      },
+      "criteria": [
+        {
+          "en": "Avoid leading questions; separate observations from assumptions.",
+          "kk": "Жетелеуші сұрақтардан аулақ болып, бақылау мен болжамды ажыратыңыз.",
+          "ru": "Избегайте наводящих вопросов; отделите наблюдения от предположений."
+        }
+      ],
       "event_id": "research-sprint",
       "title": "Plan a discovery interview",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Prepare an interview about how people choose their next learning activity.",
       "titles": {
         "en": "Plan a discovery interview",
         "kk": "Зерттеу сұхбатын жоспарлау",
         "ru": "Подготовить исследовательское интервью"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Prepare an interview about how people choose their next learning activity.",
+        "kk": "Адамдардың келесі оқу әрекетін қалай таңдайтыны туралы сұхбат дайындаңыз.",
+        "ru": "Подготовьте интервью о том, как люди выбирают следующую учебную активность."
       },
       "type": "workshop",
       "format": "self_paced",
@@ -784,18 +832,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "An annotated sketch with three prioritized improvements.",
+        "kk": "Түсіндірмелері бар эскиз және басым үш жақсарту.",
+        "ru": "Эскиз с комментариями и тремя приоритетными улучшениями."
+      },
+      "criteria": [
+        {
+          "en": "Explain the user problem behind each change and check focus order.",
+          "kk": "Әр өзгерістің пайдаланушыға пайдасын түсіндіріп, фокус ретін тексеріңіз.",
+          "ru": "Объясните проблему пользователя для каждого изменения и проверьте порядок фокуса."
+        }
+      ],
       "event_id": "design-critique",
       "title": "Run a design critique",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Review a fictional booking form for clarity and keyboard access.",
       "titles": {
         "en": "Run a design critique",
         "kk": "Дизайнды талқылау",
         "ru": "Провести дизайн-ревью"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Review a fictional booking form for clarity and keyboard access.",
+        "kk": "Ойдан шығарылған брондау пішінінің түсініктілігін және пернетақтамен қолжетімділігін тексеріңіз.",
+        "ru": "Проведите ревью вымышленной формы бронирования на понятность и доступность с клавиатуры."
       },
       "type": "workshop",
       "format": "online",
@@ -825,18 +885,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "A short analysis with uncertainty and a next-step recommendation.",
+        "kk": "Белгісіздік пен келесі қадам ұсынысы бар қысқа талдау.",
+        "ru": "Краткий анализ с неопределённостью и рекомендацией следующего шага."
+      },
+      "criteria": [
+        {
+          "en": "Calculate rates and absolute difference; do not claim significance from the difference alone.",
+          "kk": "Үлестерді және абсолют айырманы есептеңіз; айырмаға ғана сүйеніп маңыздылықты жарияламаңыз.",
+          "ru": "Вычислите доли и абсолютную разницу; не объявляйте значимость только по разнице."
+        }
+      ],
       "event_id": "analysis-lab",
       "title": "Explain an experiment",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Interpret a fictional experiment with 40/200 conversions in A and 46/200 in B.",
       "titles": {
         "en": "Explain an experiment",
         "kk": "Эксперимент нәтижесін түсіндіру",
         "ru": "Объяснить результат эксперимента"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Interpret a fictional experiment with 40/200 conversions in A and 46/200 in B.",
+        "kk": "Ойдан шығарылған экспериментті талдаңыз: A тобында 200-ден 40, B тобында 200-ден 46 конверсия.",
+        "ru": "Разберите вымышленный эксперимент: 40 из 200 конверсий в A и 46 из 200 в B."
       },
       "type": "workshop",
       "format": "self_paced",
@@ -863,18 +935,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "SQL, EXPLAIN output, and before/after timing with an index.",
+        "kk": "SQL, EXPLAIN жоспары және индекс қосылғанға дейінгі және кейінгі өлшемдер.",
+        "ru": "SQL, план EXPLAIN и замеры до и после добавления индекса."
+      },
+      "criteria": [
+        {
+          "en": "Record data size and repetitions; explain index ordering and write costs.",
+          "kk": "Деректер көлемі мен қайталау санын көрсетіп, индекс өрістерінің ретін және жазу құнын түсіндіріңіз.",
+          "ru": "Укажите размер данных и число повторов; объясните порядок полей индекса и цену записи."
+        }
+      ],
       "event_id": "query-lab",
       "title": "Investigate a slow query",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Create fictional orders, then investigate a query filtered by customer and creation date.",
       "titles": {
         "en": "Investigate a slow query",
         "kk": "Баяу сұрауды зерттеу",
         "ru": "Исследовать медленный запрос"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Create fictional orders, then investigate a query filtered by customer and creation date.",
+        "kk": "Ойдан шығарылған тапсырыстар жасап, клиент пен күн бойынша сұрауды зерттеңіз.",
+        "ru": "Создайте вымышленные заказы и исследуйте запрос с фильтром по клиенту и дате."
       },
       "type": "workshop",
       "format": "self_paced",
@@ -902,18 +986,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "A five-minute outline and a short response to feedback.",
+        "kk": "Бес минуттық баяндама жоспары және пікірге қысқа жауап.",
+        "ru": "План выступления на пять минут и короткий ответ на обратную связь."
+      },
+      "criteria": [
+        {
+          "en": "State the problem, alternatives, decision, and one unresolved risk.",
+          "kk": "Мәселені, нұсқаларды, шешімді және бір шешілмеген тәуекелді атаңыз.",
+          "ru": "Назовите проблему, варианты, решение и один нерешённый риск."
+        }
+      ],
       "event_id": "story-circle",
       "title": "Share a technical story",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Present a technical decision to a colleague unfamiliar with the project.",
       "titles": {
         "en": "Share a technical story",
         "kk": "Техникалық шешімді таныстыру",
         "ru": "Рассказать о техническом решении"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Present a technical decision to a colleague unfamiliar with the project.",
+        "kk": "Жобамен таныс емес әріптеске техникалық шешімді түсіндіріңіз.",
+        "ru": "Объясните техническое решение коллеге, который не знаком с проектом."
       },
       "type": "workshop",
       "format": "offline",
@@ -946,18 +1042,30 @@
       "repeatable": true
     },
     {
+      "deliverable": {
+        "en": "A small backlog, dependency map, and acceptance checklist.",
+        "kk": "Шағын бэклог, тәуелділіктер картасы және қабылдау талаптары.",
+        "ru": "Небольшой бэклог, карта зависимостей и критерии приёмки."
+      },
+      "criteria": [
+        {
+          "en": "Identify the smallest useful release and one fallback if a dependency slips.",
+          "kk": "Ең шағын пайдалы шығарылымды және тәуелділік кешіккендегі баламаны анықтаңыз.",
+          "ru": "Выделите минимальный полезный релиз и запасной вариант при задержке зависимости."
+        }
+      ],
       "event_id": "planning-room",
       "title": "Plan a small delivery",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Plan a two-week delivery of a fictional booking feature.",
       "titles": {
         "en": "Plan a small delivery",
         "kk": "Шағын жобаны жоспарлау",
         "ru": "Спланировать небольшой проект"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Plan a two-week delivery of a fictional booking feature.",
+        "kk": "Ойдан шығарылған брондау функциясын екі аптада әзірлеуді жоспарлаңыз.",
+        "ru": "Спланируйте двухнедельную разработку вымышленной функции бронирования."
       },
       "type": "workshop",
       "format": "self_paced",
@@ -986,18 +1094,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "A conversation outline and a follow-up learning goal.",
+        "kk": "Әңгіме жоспары және келесі кездесуге арналған оқу мақсаты.",
+        "ru": "План разговора и учебная цель для следующей встречи."
+      },
+      "criteria": [
+        {
+          "en": "Use open questions and let the colleague choose the next debugging step.",
+          "kk": "Ашық сұрақтарды қолданып, келесі жөндеу қадамын әріптестің өзі таңдауына мүмкіндік беріңіз.",
+          "ru": "Используйте открытые вопросы и дайте коллеге выбрать следующий шаг отладки."
+        }
+      ],
       "event_id": "mentor-studio",
       "title": "Practice a mentoring session",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Practice helping a fictional junior colleague investigate a failing test.",
       "titles": {
         "en": "Practice a mentoring session",
         "kk": "Тәлімгерлік кездесуді жаттықтыру",
         "ru": "Потренировать наставническую встречу"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Practice helping a fictional junior colleague investigate a failing test.",
+        "kk": "Ойдан шығарылған жас әріптеске өтпейтін тестті зерттеуге көмектесуді жаттықтырыңыз.",
+        "ru": "Потренируйтесь помогать вымышленному начинающему коллеге разобраться с падающим тестом."
       },
       "type": "workshop",
       "format": "online",
@@ -1030,18 +1150,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "Two sequence diagrams and a tradeoff table.",
+        "kk": "Екі реттілік диаграммасы және ымыралар кестесі.",
+        "ru": "Две диаграммы последовательности и таблица компромиссов."
+      },
+      "criteria": [
+        {
+          "en": "Cover consistency, ordering, retries, observability, and operational complexity.",
+          "kk": "Келісімділікті, реттілікті, қайталауларды, диагностика мен пайдалану күрделілігін талдаңыз.",
+          "ru": "Разберите согласованность, порядок, повторы, диагностику и сложность эксплуатации."
+        }
+      ],
       "event_id": "architecture-deep-dive",
       "title": "Review distributed tradeoffs",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Compare synchronous calls and queued events for a fictional order workflow.",
       "titles": {
         "en": "Review distributed tradeoffs",
         "kk": "Таратылған архитектураны талдау",
         "ru": "Разобрать распределённую архитектуру"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Compare synchronous calls and queued events for a fictional order workflow.",
+        "kk": "Ойдан шығарылған тапсырыс үдерісіндегі синхронды шақырулар мен оқиғалар кезегін салыстырыңыз.",
+        "ru": "Сравните синхронные вызовы и очередь событий в вымышленном процессе заказа."
       },
       "type": "workshop",
       "format": "self_paced",
@@ -1070,18 +1202,30 @@
       "repeatable": false
     },
     {
+      "deliverable": {
+        "en": "A personal checklist of the main navigation areas.",
+        "kk": "Негізгі навигация бөлімдерінің жеке тізімі.",
+        "ru": "Личный список основных разделов навигации."
+      },
+      "criteria": [
+        {
+          "en": "Distinguish an assessed skill from a calculated estimate.",
+          "kk": "Бағаланған дағды мен есептік деңгейді ажыратыңыз.",
+          "ru": "Объясните отличие оценённого навыка от расчётного."
+        }
+      ],
       "event_id": "orientation",
       "title": "Workspace orientation",
-      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "description": "Explore the fictional workspace and locate its data export and help.",
       "titles": {
         "en": "Workspace orientation",
         "kk": "Жұмыс ортасымен танысу",
         "ru": "Знакомство с рабочей средой"
       },
       "descriptions": {
-        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
-        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
-        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+        "en": "Explore the fictional workspace and locate its data export and help.",
+        "kk": "Демонстрациялық жұмыс ортасын зерттеп, экспорт пен анықтаманы табыңыз.",
+        "ru": "Изучите демонстрационное рабочее пространство, найдите экспорт и справку."
       },
       "type": "workshop",
       "format": "self_paced",

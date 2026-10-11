@@ -1,3 +1,4 @@
+import ExerciseDetails from "../components/ExerciseDetails";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -28,6 +29,7 @@ export default function Overview({
   onUpdate,
   onStart,
 }: Props) {
+  const [notes, setNotes] = useState<Record<string,string>>({});
   const [editGoal, setEditGoal] = useState(false);
   const [role, setRole] = useState(a.goal?.target_role ?? a.employee.role);
   const [grade, setGrade] = useState(a.goal?.target_grade ?? a.employee.grade);
@@ -50,7 +52,7 @@ export default function Overview({
         onUpdate(
           await api<Dataset>(
             `/datasets/${dataset.id}/participation/${record}`,
-            json("PUT", { revision: dataset.revision, status }),
+            json("PUT", { revision: dataset.revision, status, reflection: notes[record] ?? "" }),
           ),
         );
       },
@@ -222,6 +224,8 @@ export default function Overview({
                 <CircleDashed size={23} />
                 <div>
                   <h3>{title(h.event_id)}</h3>
+                  <ExerciseDetails event={dataset.bundle.events.find(e => e.event_id === h.event_id)} language={language} t={t} />
+                  <label>{t("reflection")}<textarea maxLength={2000} value={notes[h.record_id] ?? ""} placeholder={t("reflectionHint")} onChange={e => setNotes({...notes,[h.record_id]:e.target.value})} /></label>
                   <p className="small muted">
                     {h.session_date
                       ? `${t("session")}: ${h.session_date}`
@@ -342,7 +346,7 @@ export default function Overview({
                 <tbody>
                   {a.history.slice(0, historyLimit).map((h) => (
                     <tr key={h.record_id}>
-                      <td>{title(h.event_id)}</td>
+                      <td>{title(h.event_id)}{h.reflection && <details><summary>{t("reflection")}</summary><p className="work-note">{h.reflection}</p></details>}</td>
                       <td>{h.completed_at ?? h.date}</td>
                       <td>
                         <span className={`status ${h.status}`}>

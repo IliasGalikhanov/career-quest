@@ -1,6 +1,13 @@
 import type { Language, Localized } from "./types";
 
 const en = {
+  exerciseDetails: "Exercise & review",
+  deliverable: "Expected output",
+  selfCheck: "Self-check criteria",
+  selfReported: "Completion is self-reported. It does not verify proficiency.",
+  reflection: "Work note (optional)",
+  reflectionHint: "What did you produce, check, and learn? Do not include personal data.",
+
   workspace: "Development workspace",
   overview: "My trajectory",
   catalog: "Activity library",
@@ -190,6 +197,13 @@ const en = {
 
 type Dictionary = Record<keyof typeof en, string>;
 const ru: Dictionary = {
+  exerciseDetails: "Задание и самопроверка",
+  deliverable: "Ожидаемый результат",
+  selfCheck: "Критерии самопроверки",
+  selfReported: "Завершение отмечает сам пользователь. Это не подтверждение квалификации.",
+  reflection: "Заметка о работе (необязательно)",
+  reflectionHint: "Что вы подготовили, проверили и узнали? Не указывайте персональные данные.",
+
   workspace: "Пространство развития",
   overview: "Моя траектория",
   catalog: "Каталог активностей",
@@ -377,6 +391,13 @@ const ru: Dictionary = {
 };
 
 const kk: Dictionary = {
+  exerciseDetails: "Тапсырма және өзіндік тексеру",
+  deliverable: "Күтілетін нәтиже",
+  selfCheck: "Өзіндік тексеру талаптары",
+  selfReported: "Аяқтауды пайдаланушы өзі белгілейді. Бұл біліктілікті растамайды.",
+  reflection: "Жұмыс туралы жазба (міндетті емес)",
+  reflectionHint: "Не дайындадыңыз, тексердіңіз және үйрендіңіз? Жеке деректерді жазбаңыз.",
+
   workspace: "Даму кеңістігі",
   overview: "Менің даму жолым",
   catalog: "Іс-шаралар каталогы",

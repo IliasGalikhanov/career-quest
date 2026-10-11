@@ -27,6 +27,8 @@ export interface RoleProfile {
   critical_skills: string[];
 }
 export interface Event {
+  deliverable?: Localized;
+  criteria?: Localized[];
   event_id: string;
   title: string;
   titles?: Localized;
@@ -40,6 +42,7 @@ export interface Event {
   upcoming_sessions: string[];
 }
 export interface Activity {
+  reflection?: string;
   record_id: string;
   employee_id: string;
   event_id: string;
