@@ -1,0 +1,1177 @@
+{
+  "meta": {
+    "dataset": "Northstar Studio · synthetic demo",
+    "version": "1.0",
+    "as_of_date": "2026-02-02",
+    "synthetic": true
+  },
+  "skills": [
+    {
+      "skill_id": "architecture",
+      "name": "Architecture",
+      "type": "hard",
+      "category": "hard",
+      "description": "Architecture",
+      "names": {
+        "en": "Architecture",
+        "kk": "Архитектура",
+        "ru": "Архитектура"
+      }
+    },
+    {
+      "skill_id": "api",
+      "name": "API design",
+      "type": "hard",
+      "category": "hard",
+      "description": "API design",
+      "names": {
+        "en": "API design",
+        "kk": "API жобалау",
+        "ru": "Проектирование API"
+      }
+    },
+    {
+      "skill_id": "testing",
+      "name": "Testing",
+      "type": "hard",
+      "category": "hard",
+      "description": "Testing",
+      "names": {
+        "en": "Testing",
+        "kk": "Тестілеу",
+        "ru": "Тестирование"
+      }
+    },
+    {
+      "skill_id": "communication",
+      "name": "Communication",
+      "type": "soft",
+      "category": "soft",
+      "description": "Communication",
+      "names": {
+        "en": "Communication",
+        "kk": "Қарым-қатынас",
+        "ru": "Коммуникация"
+      }
+    },
+    {
+      "skill_id": "research",
+      "name": "User research",
+      "type": "hard",
+      "category": "hard",
+      "description": "User research",
+      "names": {
+        "en": "User research",
+        "kk": "Пайдаланушыларды зерттеу",
+        "ru": "Исследования пользователей"
+      }
+    },
+    {
+      "skill_id": "visual",
+      "name": "Visual design",
+      "type": "hard",
+      "category": "hard",
+      "description": "Visual design",
+      "names": {
+        "en": "Visual design",
+        "kk": "Визуалды дизайн",
+        "ru": "Визуальный дизайн"
+      }
+    },
+    {
+      "skill_id": "analysis",
+      "name": "Data analysis",
+      "type": "hard",
+      "category": "hard",
+      "description": "Data analysis",
+      "names": {
+        "en": "Data analysis",
+        "kk": "Деректерді талдау",
+        "ru": "Анализ данных"
+      }
+    },
+    {
+      "skill_id": "querying",
+      "name": "Data querying",
+      "type": "hard",
+      "category": "hard",
+      "description": "Data querying",
+      "names": {
+        "en": "Data querying",
+        "kk": "Деректерге сұрау жасау",
+        "ru": "Запросы к данным"
+      }
+    },
+    {
+      "skill_id": "mentoring",
+      "name": "Mentoring",
+      "type": "soft",
+      "category": "soft",
+      "description": "Mentoring",
+      "names": {
+        "en": "Mentoring",
+        "kk": "Тәлімгерлік",
+        "ru": "Наставничество"
+      }
+    },
+    {
+      "skill_id": "planning",
+      "name": "Planning",
+      "type": "soft",
+      "category": "soft",
+      "description": "Planning",
+      "names": {
+        "en": "Planning",
+        "kk": "Жоспарлау",
+        "ru": "Планирование"
+      }
+    }
+  ],
+  "role_profiles": [
+    {
+      "role": "Platform Engineer",
+      "grade": "Junior",
+      "required_skills": {
+        "api": 2,
+        "architecture": 2,
+        "communication": 1,
+        "planning": 1,
+        "testing": 2
+      },
+      "critical_skills": [
+        "architecture"
+      ]
+    },
+    {
+      "role": "Platform Engineer",
+      "grade": "Middle",
+      "required_skills": {
+        "api": 3,
+        "architecture": 3,
+        "communication": 2,
+        "planning": 2,
+        "testing": 3
+      },
+      "critical_skills": [
+        "architecture"
+      ]
+    },
+    {
+      "role": "Platform Engineer",
+      "grade": "Senior",
+      "required_skills": {
+        "api": 4,
+        "architecture": 4,
+        "communication": 3,
+        "planning": 3,
+        "testing": 4
+      },
+      "critical_skills": [
+        "architecture"
+      ]
+    },
+    {
+      "role": "Platform Engineer",
+      "grade": "Lead",
+      "required_skills": {
+        "api": 5,
+        "architecture": 5,
+        "communication": 4,
+        "mentoring": 3,
+        "planning": 4,
+        "testing": 5
+      },
+      "critical_skills": [
+        "architecture"
+      ]
+    },
+    {
+      "role": "Product Designer",
+      "grade": "Junior",
+      "required_skills": {
+        "communication": 2,
+        "planning": 1,
+        "research": 2,
+        "visual": 2
+      },
+      "critical_skills": [
+        "research"
+      ]
+    },
+    {
+      "role": "Product Designer",
+      "grade": "Middle",
+      "required_skills": {
+        "communication": 3,
+        "planning": 2,
+        "research": 3,
+        "visual": 3
+      },
+      "critical_skills": [
+        "research"
+      ]
+    },
+    {
+      "role": "Product Designer",
+      "grade": "Senior",
+      "required_skills": {
+        "communication": 4,
+        "planning": 3,
+        "research": 4,
+        "visual": 4
+      },
+      "critical_skills": [
+        "research"
+      ]
+    },
+    {
+      "role": "Product Designer",
+      "grade": "Lead",
+      "required_skills": {
+        "communication": 5,
+        "mentoring": 3,
+        "planning": 4,
+        "research": 5,
+        "visual": 5
+      },
+      "critical_skills": [
+        "research"
+      ]
+    },
+    {
+      "role": "Analytics Specialist",
+      "grade": "Junior",
+      "required_skills": {
+        "analysis": 2,
+        "communication": 1,
+        "planning": 2,
+        "querying": 2
+      },
+      "critical_skills": [
+        "analysis"
+      ]
+    },
+    {
+      "role": "Analytics Specialist",
+      "grade": "Middle",
+      "required_skills": {
+        "analysis": 3,
+        "communication": 2,
+        "planning": 3,
+        "querying": 3
+      },
+      "critical_skills": [
+        "analysis"
+      ]
+    },
+    {
+      "role": "Analytics Specialist",
+      "grade": "Senior",
+      "required_skills": {
+        "analysis": 4,
+        "communication": 3,
+        "planning": 4,
+        "querying": 4
+      },
+      "critical_skills": [
+        "analysis"
+      ]
+    },
+    {
+      "role": "Analytics Specialist",
+      "grade": "Lead",
+      "required_skills": {
+        "analysis": 5,
+        "communication": 4,
+        "mentoring": 3,
+        "planning": 5,
+        "querying": 5
+      },
+      "critical_skills": [
+        "analysis"
+      ]
+    }
+  ],
+  "employees": [
+    {
+      "employee_id": "person-01",
+      "full_name": "Alex Demo",
+      "department": "Platform",
+      "role": "Platform Engineer",
+      "grade": "Middle",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": {
+        "target_role": "Platform Engineer",
+        "target_grade": "Senior"
+      },
+      "skills": {
+        "analysis": 2,
+        "api": 3,
+        "architecture": 2,
+        "communication": 1,
+        "mentoring": 3,
+        "planning": 2,
+        "querying": 2,
+        "research": 1,
+        "testing": 3,
+        "visual": 1
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-02",
+      "full_name": "Dana Demo",
+      "department": "Experience",
+      "role": "Product Designer",
+      "grade": "Junior",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": {
+        "target_role": "Product Designer",
+        "target_grade": "Middle"
+      },
+      "skills": {
+        "analysis": 1,
+        "api": 1,
+        "architecture": 1,
+        "communication": 3,
+        "mentoring": 3,
+        "planning": 3,
+        "querying": 2,
+        "research": 2,
+        "testing": 3,
+        "visual": 3
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-03",
+      "full_name": "Sam Demo",
+      "department": "Insights",
+      "role": "Analytics Specialist",
+      "grade": "Junior",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": {
+        "target_role": "Platform Engineer",
+        "target_grade": "Middle"
+      },
+      "skills": {
+        "analysis": 3,
+        "api": 3,
+        "architecture": 3,
+        "communication": 3,
+        "mentoring": 3,
+        "planning": 2,
+        "querying": 2,
+        "research": 2,
+        "testing": 3,
+        "visual": 3
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-04",
+      "full_name": "Mira Demo",
+      "department": "Platform",
+      "role": "Platform Engineer",
+      "grade": "Middle",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": {
+        "target_role": "Platform Engineer",
+        "target_grade": "Senior"
+      },
+      "skills": {
+        "analysis": 3,
+        "api": 1,
+        "architecture": 2,
+        "communication": 3,
+        "mentoring": 2,
+        "planning": 3,
+        "querying": 3,
+        "research": 1,
+        "testing": 2,
+        "visual": 1
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-05",
+      "full_name": "Noah Demo",
+      "department": "Experience",
+      "role": "Product Designer",
+      "grade": "Middle",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": null,
+      "skills": {
+        "analysis": 2,
+        "api": 3,
+        "architecture": 1,
+        "communication": 2,
+        "mentoring": 2,
+        "planning": 3,
+        "querying": 2,
+        "research": 2,
+        "testing": 2,
+        "visual": 3
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-06",
+      "full_name": "Ari Demo",
+      "department": "Insights",
+      "role": "Analytics Specialist",
+      "grade": "Middle",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": {
+        "target_role": "Analytics Specialist",
+        "target_grade": "Senior"
+      },
+      "skills": {
+        "analysis": 2,
+        "api": 2,
+        "architecture": 1,
+        "communication": 1,
+        "mentoring": 3,
+        "planning": 1,
+        "querying": 1,
+        "research": 3,
+        "testing": 1,
+        "visual": 1
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-07",
+      "full_name": "Kai Demo",
+      "department": "Platform",
+      "role": "Platform Engineer",
+      "grade": "Senior",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": {
+        "target_role": "Platform Engineer",
+        "target_grade": "Lead"
+      },
+      "skills": {
+        "analysis": 2,
+        "api": 3,
+        "architecture": 2,
+        "communication": 3,
+        "mentoring": 2,
+        "planning": 2,
+        "querying": 3,
+        "research": 2,
+        "testing": 3,
+        "visual": 2
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-08",
+      "full_name": "Rin Demo",
+      "department": "Experience",
+      "role": "Product Designer",
+      "grade": "Senior",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": {
+        "target_role": "Product Designer",
+        "target_grade": "Lead"
+      },
+      "skills": {
+        "analysis": 2,
+        "api": 2,
+        "architecture": 3,
+        "communication": 3,
+        "mentoring": 1,
+        "planning": 1,
+        "querying": 2,
+        "research": 3,
+        "testing": 2,
+        "visual": 2
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-09",
+      "full_name": "Robin Demo",
+      "department": "Insights",
+      "role": "Analytics Specialist",
+      "grade": "Senior",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": {
+        "target_role": "Analytics Specialist",
+        "target_grade": "Lead"
+      },
+      "skills": {
+        "analysis": 1,
+        "api": 3,
+        "architecture": 2,
+        "communication": 3,
+        "mentoring": 2,
+        "planning": 3,
+        "querying": 2,
+        "research": 2,
+        "testing": 1,
+        "visual": 3
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-10",
+      "full_name": "Lee Demo",
+      "department": "Platform",
+      "role": "Platform Engineer",
+      "grade": "Lead",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": null,
+      "skills": {
+        "analysis": 1,
+        "api": 2,
+        "architecture": 2,
+        "communication": 2,
+        "mentoring": 1,
+        "planning": 2,
+        "querying": 3,
+        "research": 3,
+        "testing": 3,
+        "visual": 2
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-11",
+      "full_name": "Ash Demo",
+      "department": "Experience",
+      "role": "Product Designer",
+      "grade": "Lead",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": null,
+      "skills": {
+        "analysis": 2,
+        "api": 2,
+        "architecture": 2,
+        "communication": 1,
+        "mentoring": 1,
+        "planning": 2,
+        "querying": 2,
+        "research": 3,
+        "testing": 1,
+        "visual": 3
+      },
+      "last_review_date": "2026-01-10"
+    },
+    {
+      "employee_id": "person-12",
+      "full_name": "Kim Demo",
+      "department": "Insights",
+      "role": "Analytics Specialist",
+      "grade": "Lead",
+      "manager_id": null,
+      "hire_date": "2024-06-01",
+      "tenure_months": 20,
+      "work_format": "hybrid",
+      "preferred_language": "en",
+      "career_goal": null,
+      "skills": {
+        "analysis": 2,
+        "api": 3,
+        "architecture": 2,
+        "communication": 2,
+        "mentoring": 2,
+        "planning": 2,
+        "querying": 2,
+        "research": 2,
+        "testing": 3,
+        "visual": 3
+      },
+      "last_review_date": "2026-01-10"
+    }
+  ],
+  "events": [
+    {
+      "event_id": "architecture-lab",
+      "title": "Design a resilient service",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Design a resilient service",
+        "kk": "Тұрақты сервисті жобалау",
+        "ru": "Спроектировать устойчивый сервис"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "self_paced",
+      "duration_hours": 4,
+      "mandatory": false,
+      "target_roles": [
+        "Platform Engineer"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "architecture",
+          "gain": 1,
+          "max_level": 4
+        }
+      ],
+      "prerequisites": {},
+      "upcoming_sessions": [],
+      "repeatable": false
+    },
+    {
+      "event_id": "api-clinic",
+      "title": "Review an API contract",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Review an API contract",
+        "kk": "API келісімшартын тексеру",
+        "ru": "Ревью контракта API"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "self_paced",
+      "duration_hours": 3,
+      "mandatory": false,
+      "target_roles": [
+        "Platform Engineer"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "api",
+          "gain": 1,
+          "max_level": 5
+        }
+      ],
+      "prerequisites": {},
+      "upcoming_sessions": [],
+      "repeatable": false
+    },
+    {
+      "event_id": "test-workbench",
+      "title": "Build a testing strategy",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Build a testing strategy",
+        "kk": "Тестілеу стратегиясын құру",
+        "ru": "Разработать стратегию тестирования"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "self_paced",
+      "duration_hours": 5,
+      "mandatory": false,
+      "target_roles": [
+        "Platform Engineer"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "testing",
+          "gain": 1,
+          "max_level": 4
+        }
+      ],
+      "prerequisites": {},
+      "upcoming_sessions": [],
+      "repeatable": false
+    },
+    {
+      "event_id": "research-sprint",
+      "title": "Plan a discovery interview",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Plan a discovery interview",
+        "kk": "Зерттеу сұхбатын жоспарлау",
+        "ru": "Подготовить исследовательское интервью"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "self_paced",
+      "duration_hours": 4,
+      "mandatory": false,
+      "target_roles": [
+        "Product Designer"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "research",
+          "gain": 1,
+          "max_level": 5
+        }
+      ],
+      "prerequisites": {},
+      "upcoming_sessions": [],
+      "repeatable": false
+    },
+    {
+      "event_id": "design-critique",
+      "title": "Run a design critique",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Run a design critique",
+        "kk": "Дизайнды талқылау",
+        "ru": "Провести дизайн-ревью"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "online",
+      "duration_hours": 2,
+      "mandatory": false,
+      "target_roles": [
+        "Product Designer"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "visual",
+          "gain": 1,
+          "max_level": 4
+        }
+      ],
+      "prerequisites": {},
+      "upcoming_sessions": [
+        "2026-02-10",
+        "2026-03-10"
+      ],
+      "repeatable": false
+    },
+    {
+      "event_id": "analysis-lab",
+      "title": "Explain an experiment",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Explain an experiment",
+        "kk": "Эксперимент нәтижесін түсіндіру",
+        "ru": "Объяснить результат эксперимента"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "self_paced",
+      "duration_hours": 4,
+      "mandatory": false,
+      "target_roles": [
+        "Analytics Specialist"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "analysis",
+          "gain": 1,
+          "max_level": 4
+        }
+      ],
+      "prerequisites": {},
+      "upcoming_sessions": [],
+      "repeatable": false
+    },
+    {
+      "event_id": "query-lab",
+      "title": "Investigate a slow query",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Investigate a slow query",
+        "kk": "Баяу сұрауды зерттеу",
+        "ru": "Исследовать медленный запрос"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "self_paced",
+      "duration_hours": 3,
+      "mandatory": false,
+      "target_roles": [
+        "Analytics Specialist",
+        "Platform Engineer"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "querying",
+          "gain": 1,
+          "max_level": 4
+        }
+      ],
+      "prerequisites": {},
+      "upcoming_sessions": [],
+      "repeatable": false
+    },
+    {
+      "event_id": "story-circle",
+      "title": "Share a technical story",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Share a technical story",
+        "kk": "Техникалық шешімді таныстыру",
+        "ru": "Рассказать о техническом решении"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "offline",
+      "duration_hours": 2,
+      "mandatory": false,
+      "target_roles": [
+        "Platform Engineer",
+        "Product Designer",
+        "Analytics Specialist"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "communication",
+          "gain": 1,
+          "max_level": 4
+        }
+      ],
+      "prerequisites": {},
+      "upcoming_sessions": [
+        "2026-02-02",
+        "2026-02-16",
+        "2026-03-02"
+      ],
+      "repeatable": true
+    },
+    {
+      "event_id": "planning-room",
+      "title": "Plan a small delivery",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Plan a small delivery",
+        "kk": "Шағын жобаны жоспарлау",
+        "ru": "Спланировать небольшой проект"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "self_paced",
+      "duration_hours": 3,
+      "mandatory": false,
+      "target_roles": [
+        "Platform Engineer",
+        "Product Designer",
+        "Analytics Specialist"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "planning",
+          "gain": 1,
+          "max_level": 4
+        }
+      ],
+      "prerequisites": {},
+      "upcoming_sessions": [],
+      "repeatable": false
+    },
+    {
+      "event_id": "mentor-studio",
+      "title": "Practice a mentoring session",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Practice a mentoring session",
+        "kk": "Тәлімгерлік кездесуді жаттықтыру",
+        "ru": "Потренировать наставническую встречу"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "online",
+      "duration_hours": 6,
+      "mandatory": false,
+      "target_roles": [
+        "Platform Engineer",
+        "Product Designer",
+        "Analytics Specialist"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "mentoring",
+          "gain": 1,
+          "max_level": 4
+        }
+      ],
+      "prerequisites": {
+        "communication": 3
+      },
+      "upcoming_sessions": [
+        "2026-02-20"
+      ],
+      "repeatable": false
+    },
+    {
+      "event_id": "architecture-deep-dive",
+      "title": "Review distributed tradeoffs",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Review distributed tradeoffs",
+        "kk": "Таратылған архитектураны талдау",
+        "ru": "Разобрать распределённую архитектуру"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "self_paced",
+      "duration_hours": 8,
+      "mandatory": false,
+      "target_roles": [
+        "Platform Engineer"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [
+        {
+          "skill_id": "architecture",
+          "gain": 1,
+          "max_level": 5
+        }
+      ],
+      "prerequisites": {
+        "architecture": 4
+      },
+      "upcoming_sessions": [],
+      "repeatable": false
+    },
+    {
+      "event_id": "orientation",
+      "title": "Workspace orientation",
+      "description": "A focused practice session with a concrete deliverable and a short review.",
+      "titles": {
+        "en": "Workspace orientation",
+        "kk": "Жұмыс ортасымен танысу",
+        "ru": "Знакомство с рабочей средой"
+      },
+      "descriptions": {
+        "en": "Practice a focused skill, produce a small deliverable, and reflect on the result.",
+        "kk": "Дағдыны жаттықтырып, шағын жұмыс дайындаңыз және нәтижені бағалаңыз.",
+        "ru": "Отработайте навык, подготовьте небольшой результат и проведите самооценку."
+      },
+      "type": "workshop",
+      "format": "self_paced",
+      "duration_hours": 1,
+      "mandatory": true,
+      "target_roles": [
+        "Platform Engineer",
+        "Product Designer",
+        "Analytics Specialist"
+      ],
+      "target_grades": [
+        "Junior",
+        "Middle",
+        "Senior",
+        "Lead"
+      ],
+      "develops_skills": [],
+      "prerequisites": {},
+      "upcoming_sessions": [],
+      "repeatable": false
+    }
+  ],
+  "activity_history": [
+    {
+      "record_id": "past-0",
+      "employee_id": "person-01",
+      "event_id": "story-circle",
+      "date": "2025-11-03",
+      "due_date": "",
+      "status": "no_show",
+      "completion_pct": 0,
+      "score": null,
+      "feedback_rating": null,
+      "assigned_by": "self"
+    },
+    {
+      "record_id": "past-1",
+      "employee_id": "person-01",
+      "event_id": "story-circle",
+      "date": "2025-12-01",
+      "due_date": "",
+      "status": "no_show",
+      "completion_pct": 0,
+      "score": null,
+      "feedback_rating": null,
+      "assigned_by": "self"
+    },
+    {
+      "record_id": "past-2",
+      "employee_id": "person-01",
+      "event_id": "story-circle",
+      "date": "2026-01-05",
+      "due_date": "",
+      "status": "no_show",
+      "completion_pct": 0,
+      "score": null,
+      "feedback_rating": null,
+      "assigned_by": "self"
+    },
+    {
+      "record_id": "past-4",
+      "employee_id": "person-02",
+      "event_id": "research-sprint",
+      "date": "2026-01-12",
+      "due_date": "",
+      "status": "completed",
+      "completion_pct": 100,
+      "score": null,
+      "feedback_rating": null,
+      "assigned_by": "self",
+      "completed_at": "2026-01-14"
+    },
+    {
+      "record_id": "past-5",
+      "employee_id": "person-03",
+      "event_id": "analysis-lab",
+      "date": "2026-01-13",
+      "due_date": "",
+      "status": "completed",
+      "completion_pct": 100,
+      "score": null,
+      "feedback_rating": null,
+      "assigned_by": "self"
+    }
+  ],
+  "settings": {
+    "date": "2026-02-02",
+    "max_hours": 40,
+    "format": "any",
+    "horizon_days": 90,
+    "assume_completion_date": false
+  }
+}
