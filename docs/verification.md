@@ -12,19 +12,22 @@ were used.
 | `go test -race -cover ./cmd/... ./internal/...` | Passed, no race reports |
 | React TypeScript and production build | Passed |
 | ESLint with zero allowed warnings | Passed |
-| Chromium browser suite | 9 scenarios passed, 21.2 seconds total on the local run |
-| Accessibility | No axe violations for the tested trajectory screen in light/dark themes using WCAG 2 A/AA and 2.1 AA tags |
+| Chromium browser suite | 13 scenarios passed, 40.1 seconds total on the local run |
+| Accessibility | No axe violations for the trajectory, catalog, HR and data screens in light/dark themes using WCAG 2 A/AA and 2.1 AA tags |
 | Keyboard | Skip link transfers focus to the main content |
 | Mobile | 390 × 844 viewport, no horizontal page overflow; Russian/Kazakh switching and dark theme verified |
 | Docker | Production image built; nonroot service reached healthy state |
 | Container recreation | Dataset, revision, history, skill levels, and coverage preserved after `down` followed by `up` without deleting volumes |
 | Clean GitHub clone | Built and started from a separate clone, with isolated project name, port and initially empty volume |
+| Legacy upgrade | All 4 existing Docker datasets retained byte-equivalent JSON values and revisions after automatic schema migration |
+| API contract | OpenAPI document valid; live response schemas and correlated error IDs passed |
+| Recommendation evaluation | 8 authored expectations passed; baseline and weight sensitivity recorded |
 | Repository exclusions | Private analysis, working brief, databases, imports and secrets are not tracked |
 
 The browser suite covers delayed-read races, completion and reload, goal changes,
 unavailable activities, import preview/commit/export, invalid import preservation,
 HR filtering, localization, mobile layout, persisted time limits, keyboard access,
-and automated accessibility checks. The server suite additionally checks concurrent
+work notes, workspace rename/delete, URL Back/Forward, escaped text, and automated accessibility checks. The server suite additionally checks concurrent
 writes, same-day replay order, duplicate completion, future sessions, ambiguous
 history, CSV parsing, append conflicts, rollback, and SQLite reopening.
 
@@ -37,7 +40,11 @@ with Linux containers, and Playwright Chromium. Docker base images are pinned by
 digest. The separate-clone check reused Docker's dependency cache; it verifies that
 no untracked project files are required, not a completely cold download benchmark.
 
-## Local API latency
+## Initial release latency (historical)
+
+These measurements describe the original aggregate-storage release. For the current
+entity schema, allocation comparison and concurrent HTTP check, see
+[performance and limits](performance.md).
 
 Measured with `python scripts/benchmark.py` against the Docker service on loopback.
 Each endpoint received 3 warm-up calls and 30 measured requests, concurrency 1.
@@ -66,11 +73,11 @@ for its exact result rather than assuming every historical commit was green.
 
 ## Remaining limits
 
-- Automated accessibility coverage is limited to the tested screen and states; it is
+- Automated accessibility coverage is limited to the tested screens and states; it is
   not a complete assistive-technology audit.
 - Kazakh text is implemented but has not had an independent native-speaker review.
 - In-browser self-reported completion is not a verified assessment or LMS integration.
-- No authorization, public deployment, multi-user load test, or real-data evaluation
+- No authorization, public deployment, sustained multi-user soak test, or real-data evaluation
   is part of this local release.
 - For self-paced history without completion dates, the actual assessment boundary
   cannot be recovered. The conservative default excludes uncertain gains.

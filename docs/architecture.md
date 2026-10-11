@@ -26,13 +26,31 @@ server-calculated results; it never reimplements the recommendation score.
 
 ## Storage and concurrency
 
-A dataset is a versioned aggregate serialized as JSON inside SQLite. Catalogs,
-assessments, goals, participation, and settings remain distinct fields of that
-aggregate. This makes whole-package validation and portable backup straightforward.
-At the current local scale, atomicity and simplicity matter more than relational
-reporting across millions of records. The tradeoff is that updates rewrite the
-aggregate and analytics run in memory. A larger multi-user system should normalize
-the records and introduce indexed queries and authorization.
+A dataset is a versioned workspace. SQLite has separate tables for skills, role
+profiles, events, employees and activity history, with dataset ownership foreign keys
+and employee/event references for participation. Indexed stored columns support
+profile and department/role selection. Each entity keeps its portable JSON payload;
+localized fields and nested skill/gain maps remain JSON. This hybrid model separates
+entity identity and lifecycle without claiming every nested reference is a SQL key.
+
+Migration 002 extracts existing records with SQLite JSON functions, retains revisions
+and ordering, and removes the former whole-bundle payload. Migration 003 indexes
+history by dataset, employee and ordinal. Startup applies each migration atomically.
+Updates compare immutable encoded rows and write only changed entities. Full exports
+still assemble a bundle, and generic updates still read it: see the measured costs
+and regressions in [performance](performance.md).
+
+```mermaid
+erDiagram
+    datasets ||--o{ skills : owns
+    datasets ||--o{ role_profiles : owns
+    datasets ||--o{ events : owns
+    datasets ||--o{ employees : owns
+    datasets ||--o{ activity_history : owns
+    datasets ||--o{ recommendation_runs : records
+    employees ||--o{ activity_history : participates
+    events ||--o{ activity_history : receives
+```
 
 SQLite uses WAL, foreign keys, a busy timeout, and one connection per process.
 Every mutation checks the client's dataset revision inside a transaction. Concurrent

@@ -7,6 +7,13 @@ Choose a career goal, understand your skill gaps, and take a practical next step
 Every recommendation explains its connection to the goal, the expected skill gain,
 and the relevant participation history.
 
+**[Watch the 67-second walkthrough](docs/career-quest-demo.webm)** ·
+[Engineering decisions](docs/decisions.md) · [Measured performance](docs/performance.md) ·
+[API contract](docs/api.md)
+
+The recording shows the actual application on fictional data, with captions and no
+voiceover. If GitHub shows a file preview, choose **View raw** to play/download WebM.
+
 ![Career trajectory with recommendations and skill progress](docs/trajectory.png)
 
 ## Run from a clean clone
@@ -40,7 +47,7 @@ set `CQ_PORT=8090` in a local `.env` file before starting Compose.
 2. Inspect the Middle → Senior goal and the separate assessed and estimated levels.
 3. Read why **Design a resilient service** is recommended: the critical architecture
    gap matters more than the lowest individual skill.
-4. Start the activity, then mark it complete. Architecture changes from **2 to 3**;
+4. Open the exercise details, start the activity, record a work note, then mark it complete. Architecture changes from **2 to 3**;
    estimated coverage changes from **61% to 67%**. The original assessment stays at 2.
 5. Refresh the page or restart the container. Progress and participation remain saved.
 6. Explore the activity library, change the goal or time limit, and open People insights.
@@ -51,6 +58,9 @@ learning outcomes, recommendation accuracy, or the probability of a promotion.
 ## Features
 
 - Career goals, skill requirements, assessed levels, and estimated progress.
+- Twelve original exercises with concrete deliverables, self-check criteria and saved work notes.
+- Workspace rename/delete with revision checks, backup link and deletion confirmation.
+- Section URLs with browser Back/Forward and reload support.
 - Up to three feasible next steps with structured, auditable explanations.
 - Prerequisite, audience, session, duration, repeatability, and completion checks.
 - Participation lifecycle with transactional updates and stale-write protection.
@@ -59,7 +69,9 @@ learning outcomes, recommendation accuracy, or the probability of a promotion.
 - JSON bundle import/export, four-file JSON/CSV import, and append-only profile imports.
 - Read-only import preview, validation paths, and a retained recommendation evidence log.
 - Russian, Kazakh, and English; light/dark themes; responsive and keyboard-accessible UI.
-- Persistent SQLite storage, versioned SQL migrations, Docker health checks, and CI.
+- Indexed SQLite entity tables, automatic legacy migration, Docker health checks, and CI.
+- Generated OpenAPI, live contract checks and structured request diagnostics.
+- Eight authored recommendation scenarios, weight sensitivity and a shortest-step baseline.
 
 ## Local development
 
@@ -141,6 +153,10 @@ design choices, not learned estimates of employee success.
 
 - [Data contract and imports](docs/data-format.md)
 - [Architecture and limitations](docs/architecture.md)
+- [Engineering decisions](docs/decisions.md)
+- [Recommendation evaluation](docs/evaluation.md)
+- [Performance and regressions](docs/performance.md)
+- [API and request diagnostics](docs/api.md)
 - [Verification results](docs/verification.md)
 - [Dependency notices](THIRD_PARTY_NOTICES.md)
 
