@@ -6,6 +6,7 @@
 /bin/
 /web/dist/
 *.exe
+*.tsbuildinfo
 /private-data/
 /uploads/
 /backups/
