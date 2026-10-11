@@ -192,6 +192,9 @@ test("time budget persists and explains an empty recommendation set", async ({
   await page.getByRole("button", { name: "Save changes" }).click();
   await expect(page.getByRole("status")).toHaveText("Changes saved");
   await page.reload();
+  await page
+    .getByRole("button", { name: "My trajectory", exact: true })
+    .click();
   await expect(
     page.getByRole("heading", { name: "No suitable next step yet" }),
   ).toBeVisible();
@@ -231,4 +234,81 @@ test("keyboard entry and automated accessibility checks in both themes", async (
       `Accessibility violations in ${theme} theme`,
     ).toEqual([]);
   }
+});
+
+test("exercise notes survive reload and URL navigation supports browser history", async ({
+  page,
+}) => {
+  await openDemo(page);
+  const card = page.getByTestId("activity-architecture-lab");
+  await card.getByText("Exercise & review", { exact: true }).click();
+  await expect(card).toContainText("component diagram");
+  await card.getByRole("button", { name: "Start activity" }).click();
+  await page
+    .getByRole("textbox", { name: "Work note (optional)" })
+    .fill(
+      "Created a component diagram, compared retry strategies and documented duplicate handling.",
+    );
+  await page.getByRole("button", { name: "Mark complete" }).click();
+  await page.reload();
+  await page
+    .getByRole("cell")
+    .filter({ hasText: "Design a resilient service" })
+    .getByText("Work note (optional)", { exact: true })
+    .click();
+  await expect(page.locator(".work-note")).toContainText("duplicate handling");
+  await page
+    .getByRole("button", { name: "Activity library", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/catalog$/);
+  await page
+    .getByRole("button", { name: "People insights", exact: true })
+    .click();
+  await page.goBack();
+  await expect(page).toHaveURL(/\/catalog$/);
+  await page.reload();
+  await expect(page.getByRole("searchbox")).toBeVisible();
+  await page.goForward();
+  await expect(page).toHaveURL(/\/hr$/);
+});
+
+test("rename and delete a dataset without affecting other workspaces", async ({
+  page,
+}) => {
+  await openDemo(page);
+  await page
+    .getByRole("button", { name: "Data & settings", exact: true })
+    .click();
+  const unique = `Disposable workspace ${Date.now()}`;
+  await page
+    .getByRole("textbox", { name: "Dataset name", exact: true })
+    .fill(unique);
+  await page
+    .getByRole("button", { name: "Rename dataset", exact: true })
+    .click();
+  await expect(
+    page
+      .getByRole("combobox", { name: "Dataset", exact: true })
+      .locator("option:checked"),
+  ).toHaveText(unique);
+  await page
+    .getByRole("button", { name: "Delete dataset", exact: true })
+    .click();
+  await expect(
+    page.getByRole("group", { name: "Delete dataset" }),
+  ).toContainText("recommendation log");
+  await page.getByRole("button", { name: "Cancel", exact: true }).click();
+  await expect(
+    page.getByRole("textbox", { name: "Dataset name", exact: true }),
+  ).toHaveValue(unique);
+  await page
+    .getByRole("button", { name: "Delete dataset", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Delete permanently", exact: true })
+    .click();
+  await expect(page.getByRole("status")).toHaveText("Dataset deleted");
+  await expect(
+    page.getByRole("option", { name: unique, exact: true }),
+  ).toHaveCount(0);
 });

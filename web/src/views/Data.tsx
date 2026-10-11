@@ -1,3 +1,4 @@
+import DatasetManager from "../components/DatasetManager";
 import { useState } from "react";
 import {
   UploadCloud,
@@ -19,6 +20,7 @@ interface Props {
   run: Run;
   onUpdate: (d: Dataset) => void;
   onDemo: () => void;
+  onRemove: (id: string) => void;
 }
 
 export default function Data(props: Props) {
@@ -36,8 +38,15 @@ export default function Data(props: Props) {
         <Importer key={`${dataset?.id}-${dataset?.revision}`} {...props} />
         <div className="form-stack">
           {dataset && (
+            <DatasetManager
+              key={`manager-${dataset.id}-${dataset.revision}`}
+              {...props}
+              dataset={dataset}
+            />
+          )}
+          {dataset && (
             <SettingsForm
-              key={`${dataset.id}-${dataset.revision}`}
+              key={`settings-${dataset.id}-${dataset.revision}`}
               {...props}
               dataset={dataset}
             />

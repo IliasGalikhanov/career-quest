@@ -1,12 +1,23 @@
 import type { Language, Localized } from "./types";
 
 const en = {
+  manageDataset: "Manage dataset",
+  datasetName: "Dataset name",
+  renameDataset: "Rename dataset",
+  deleteDataset: "Delete dataset",
+  deleteWarning:
+    "This removes the dataset and its recommendation log. Export a backup first if needed.",
+  cancelAction: "Cancel",
+  confirmDelete: "Delete permanently",
+  datasetDeleted: "Dataset deleted",
+
   exerciseDetails: "Exercise & review",
   deliverable: "Expected output",
   selfCheck: "Self-check criteria",
   selfReported: "Completion is self-reported. It does not verify proficiency.",
   reflection: "Work note (optional)",
-  reflectionHint: "What did you produce, check, and learn? Do not include personal data.",
+  reflectionHint:
+    "What did you produce, check, and learn? Do not include personal data.",
 
   workspace: "Development workspace",
   overview: "My trajectory",
@@ -197,12 +208,24 @@ const en = {
 
 type Dictionary = Record<keyof typeof en, string>;
 const ru: Dictionary = {
+  manageDataset: "Управление набором",
+  datasetName: "Название набора",
+  renameDataset: "Переименовать набор",
+  deleteDataset: "Удалить набор",
+  deleteWarning:
+    "Будут удалены набор и журнал рекомендаций. При необходимости сначала скачайте резервную копию.",
+  cancelAction: "Отмена",
+  confirmDelete: "Удалить окончательно",
+  datasetDeleted: "Набор удалён",
+
   exerciseDetails: "Задание и самопроверка",
   deliverable: "Ожидаемый результат",
   selfCheck: "Критерии самопроверки",
-  selfReported: "Завершение отмечает сам пользователь. Это не подтверждение квалификации.",
+  selfReported:
+    "Завершение отмечает сам пользователь. Это не подтверждение квалификации.",
   reflection: "Заметка о работе (необязательно)",
-  reflectionHint: "Что вы подготовили, проверили и узнали? Не указывайте персональные данные.",
+  reflectionHint:
+    "Что вы подготовили, проверили и узнали? Не указывайте персональные данные.",
 
   workspace: "Пространство развития",
   overview: "Моя траектория",
@@ -391,12 +414,24 @@ const ru: Dictionary = {
 };
 
 const kk: Dictionary = {
+  manageDataset: "Деректер жинағын басқару",
+  datasetName: "Жинақ атауы",
+  renameDataset: "Жинақ атауын өзгерту",
+  deleteDataset: "Жинақты жою",
+  deleteWarning:
+    "Жинақ пен ұсыныстар журналы жойылады. Қажет болса, алдымен сақтық көшірмені жүктеңіз.",
+  cancelAction: "Бас тарту",
+  confirmDelete: "Біржола жою",
+  datasetDeleted: "Жинақ жойылды",
+
   exerciseDetails: "Тапсырма және өзіндік тексеру",
   deliverable: "Күтілетін нәтиже",
   selfCheck: "Өзіндік тексеру талаптары",
-  selfReported: "Аяқтауды пайдаланушы өзі белгілейді. Бұл біліктілікті растамайды.",
+  selfReported:
+    "Аяқтауды пайдаланушы өзі белгілейді. Бұл біліктілікті растамайды.",
   reflection: "Жұмыс туралы жазба (міндетті емес)",
-  reflectionHint: "Не дайындадыңыз, тексердіңіз және үйрендіңіз? Жеке деректерді жазбаңыз.",
+  reflectionHint:
+    "Не дайындадыңыз, тексердіңіз және үйрендіңіз? Жеке деректерді жазбаңыз.",
 
   workspace: "Даму кеңістігі",
   overview: "Менің даму жолым",
